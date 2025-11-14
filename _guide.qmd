@@ -8,7 +8,7 @@
 
 **The Solution - CIELAB/LCh:** These color models are designed around human perception. Using them ensures that colors meant to have the same perceived lightness actually do. This is the foundation for a professional, harmonious color system.
 
-*(For more on the science behind color perception, see @sec-Colorimetry. )*
+*(For more on the science behind color perception, see [Colorimetry: The Science of Quantifying Color](#sec-Colorimetry). )*
 
 #### 2. How CVD Impacts Data Interpretation
 

@@ -15,14 +15,13 @@ format:
       sidebar-width: 235px
     page-layout: article
     theme: [brand, baselineStyles.scss, accessStyles.scss]
-    font-size:
     embed-resources: true
     self-contained: true
     toc: true
     toc-location: left
     toc-title: Table of Contents
     toc-depth: 3
-    number-sections: true
+    number-sections: false
     smooth-scroll: true
     title-block-banner: true
     title-block-categories: true

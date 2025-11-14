@@ -5,7 +5,6 @@ subtitle: "A Guide to Color Science, Human Perception, and Accessibility"
 ---
 
 
-
 {{< include _guide.qmd >}}
 
 {{< include _partOne.qmd >}}
