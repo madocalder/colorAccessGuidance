@@ -1,10 +1,10 @@
-## Part 3: Color and Digital Accessibility {#sec-partThree}
+### Part 3: Color and Digital Accessibility {#sec-partThree}
 
-### WCAG's Color & Contrast Criteria: The "Old" Standard {#sec-WCAG}
+#### WCAG's Color & Contrast Criteria: The "Old" Standard {#sec-WCAG}
 
 To make digital content accessible, the Web Content Accessibility Guidelines (WCAG) set a baseline for color contrast. These guidelines ensure that text stands out enough from its background for people to read it.
 
-#### AA and AAA Compliance Levels:
+##### AA and AAA Compliance Levels:
 
 -   **Level AA** is the standard minimum requirement for most organizations. It ensures accessibility for a wide range of users.
 
@@ -12,11 +12,11 @@ To make digital content accessible, the Web Content Accessibility Guidelines (WC
 
 **In short:** WCAG 2 provides a simple, widely-used set of rules (like a 4.5:1 contrast ratio for normal text) that is the current legal and industry baseline.
 
-### The Emergence of APCA (Accessible Perceptual Contrast Algorithm) {#sec-APCA}
+#### The Emergence of APCA (Accessible Perceptual Contrast Algorithm) {#sec-APCA}
 
 APCA is a modern, more sophisticated method for calculating contrast that is being developed as the future standard (for WCAG 3). It recognizes that human perception of contrast is more complex than simple color ratios.
 
-#### Key Advantages of APCA:
+##### Key Advantages of APCA:
 
 -   **Context-Aware:** It considers the text's **font weight, size, and background** to determine the required contrast. A small, thin font needs more contrast than a large, bold one.
 
@@ -26,7 +26,7 @@ APCA is a modern, more sophisticated method for calculating contrast that is bei
 
 **In short:** APCA is a smarter, more accurate tool that ensures readability based on real-world human vision science.
 
-### WCAG vs. APCA: A Comparative Analysis {#sec-comparison}
+#### WCAG vs. APCA: A Comparative Analysis {#sec-comparison}
 
 While WCAG 2 is the current enforceable standard, APCA represents the future direction of accessibility.
 
@@ -36,7 +36,7 @@ While WCAG 2 is the current enforceable standard, APCA represents the future dir
 
 **The industry direction** is moving toward adopting APCA, but for now, many organizations must still follow WCAG 2 for legal compliance.
 
-### Other Critical Guidelines: {#sec-otherGuidelines}
+#### Other Critical Guidelines: {#sec-otherGuidelines}
 
 Good color contrast is essential, but it's only one part of digital accessibility.
 

@@ -13,6 +13,9 @@ subtitle: "A Guide to Color Science, Human Perception, and Accessibility"
 
 {{< include _guide.qmd >}}
 
+
+## Deep Dive
+
 {{< include _partOne.qmd >}}
 
 {{< include _partTwo.qmd >}}

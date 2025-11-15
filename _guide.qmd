@@ -1,10 +1,12 @@
 ## Practical Guide to Developing Accessible Color Systems for Data Viz
 
-### Before building a palette, it's crucial to understand the core principles that make it work.
+### Core Principles
+
+Before building a palette, it's crucial to understand the core principles that make it work.
 
 #### 1. Using Perceptual Color Spaces (CIELAB/LCh) for Uniform Palettes
 
-**The Problem with HSL:** While easy for computers, HSL (Hue Saturation Lightness) does not match human vision. Colors with the same "Lightness" value (e.g., a blue and a yellow) can have wildly different perceived brightness, creating jarring and unbalanced palettes.
+**The Problem with HSL:** While more intuitive and eas to compute than RGB, HSL (Hue Saturation Lightness) does not match human vision. Colors with the same "Lightness" value (e.g., a blue and a yellow) can have wildly different perceived brightness, creating jarring and unbalanced palettes.
 
 **The Solution - CIELAB/LCh:** These color models are designed around human perception. Using them ensures that colors meant to have the same perceived lightness actually do. This is the foundation for a professional, harmonious color system.
 
@@ -12,7 +14,7 @@
 
 #### 2. How CVD Impacts Data Interpretation
 
--   If color is the *only* way to convey information, your visualization fails for users with Color Vision Deficiency (CVD).
+-   If color is the *only* way to convey information, your visualization will fail for users with Color Vision Deficiency (CVD).
 -   **Real-world consequence:** A line chart where the "profit" and "loss" lines are only distinguishable by a red/green hue will be unreadable to a significant portion of the audience, leading to misinterpreted data and poor decisions.
 
 #### 3. The Three Types of Data Palettes
@@ -41,7 +43,7 @@ Choose your palette based on the story your data tells:
 
 Follow this step-by-step workflow to build a system that is both beautiful and inherently accessible.
 
-#### Phase 1: Foundation & Strategy
+#### Phase 1: Foundation & Strategy{.phase}
 
 ##### Step 1: Audit Your Data & Chart Types
 
@@ -58,7 +60,7 @@ Follow this step-by-step workflow to build a system that is both beautiful and i
 -   **Diverging Needs:** "We need a diverging palette to show performance above/below a target."
 -   **Brand Constraints:** Identify any non-negotiable brand colors that must be incorporated.
 
-#### Phase 2: Palette Creation in a Perceptual Space
+#### Phase 2: Palette Creation in a Perceptual Space{.phase}
 
 ##### Step 3: Choose a Perceptual Color Space
 
@@ -79,7 +81,7 @@ Follow this step-by-step workflow to build a system that is both beautiful and i
 -   **Sequential:** Start with a very light, desaturated version of your color (high L, low C) for the low end. Progress to a dark, saturated version (low L, high C) for the high end. The steps in between should feel perceptually uniform.
 -   **Diverging:** Start with your "negative" hue (e.g., a cool color like blue) on one end and your "positive" hue (e.g., a warm color like orange) on the other. Meet in the middle with a very light, near-neutral color (e.g., light gray or beige).
 
-#### Phase 3: Accessibility Validation & Refinement
+#### Phase 3: Accessibility Validation & Refinement{.phase}
 
 ##### Step 6: Contrast Checking
 
@@ -100,7 +102,7 @@ Follow this step-by-step workflow to build a system that is both beautiful and i
 -   **Patterns & Textures:** For filled areas (like stacked bars), have a library of patterns (stripes, dots) to pair with colors.
 -   **Shapes:** In scatter plots, assign a unique shape (circle, square, triangle) to each category in addition to color.
 
-#### Phase 4: Tooling, Documentation & Integration
+#### Phase 4: Tooling, Documentation & Integration{.phase}
 
 ##### Step 9: Codify and Document
 

@@ -41,7 +41,7 @@ format:
     toc: true
     toc-location: left
     toc-title: Table of Contents
-    toc-depth: 3
+    toc-depth: 4
     number-sections: false
     smooth-scroll: true
     title-block-banner: true

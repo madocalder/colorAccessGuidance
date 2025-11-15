@@ -1,6 +1,6 @@
-## Part 2: The Diversity of Human Color Perception {#sec-partTwo}
+### Part 2: The Diversity of Human Color Perception {#sec-partTwo}
 
-### The Magic of Perspective: Colors as We See Them {#sec-colorPerception}
+#### The Magic of Perspective: Colors as We See Them {#sec-colorPerception}
 
 What we see is shaped by a combination of factors, including:
 
@@ -12,7 +12,8 @@ What we see is shaped by a combination of factors, including:
 
 Our perception of color is not a single, universal experience. It varies greatly from person to person based on biology, age, and culture. Effective design doesn't assume a "normal" viewer; instead, it anticipates and plans for this human diversity from the very beginning.
 
-### Biological Diversity in Vision {#sec-colorVisionDiversity}
+
+#### Biological Diversity in Vision {#sec-colorVisionDiversity}
 
 Vision differences are common and exist on a spectrum. Designing for this diversity is a core principle of accessibility.
 
@@ -32,9 +33,9 @@ Vision differences are common and exist on a spectrum. Designing for this divers
 
     -   **Visual Acuity:** This is the sharpness of our focus. "20/20 vision" is a standard measure, but it is not perfect vision. Many people have vision that is less sharp, making small, thin text difficult to read.
 
-### Cultural & Psychological Considerations {#sec-culturalPsychConsiderations}
+#### Cultural & Psychological Considerations {#sec-culturalPsychConsiderations}
 
-#### Cultural Symbolism and Connotations: {#sec-culture}
+##### Cultural Symbolism and Connotations: {#sec-culture}
 
 Color is a powerful communication tool, but its meaning is deeply shaped by culture and context. Using it effectively requires us to think beyond our own assumptions. The meaning of a color is not universal; it is deeply shaped by culture, history, and tradition. The same color can have completely different connotations in different parts of the world.
 
@@ -51,7 +52,7 @@ Color is a powerful communication tool, but its meaning is deeply shaped by cult
 
     -   **Key Takeaway:** When choosing colors for a global audience, it is crucial to research their cultural meanings to ensure your message is interpreted correctly and respectfully.
 
-#### Emotional and Pre-attentive Responses: {#sec-Psychology}
+##### Emotional and Pre-attentive Responses: {#sec-Psychology}
 
 -   Color has a powerful, often instantaneous, effect on our emotions and where we focus our attention. This happens both through learned cultural associations and through innate, pre-attentive processing (how our brain interprets visual information before we are even consciously aware of it). While personal experience plays a role, studies suggest some emotional links to color are widely shared. Common associations include:
     -   **Red:** Energy, passion, danger, excitement

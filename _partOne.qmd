@@ -1,6 +1,7 @@
-## Part 1: The Science of Color and Human Perception {#sec-partOne}
 
-### What is Color, Really? {#sec-whatIsColor}
+### Part 1: The Science of Color and Human Perception {#sec-partOne}
+
+#### What is Color, Really? {#sec-whatIsColor}
 
 The word "color" means different things in different fields:
 
@@ -18,13 +19,13 @@ Because of these different perspectives, it's helpful to make a clear distinctio
 
 -   *Color Sensation (or Perception)*: This is the color you actually see. It's the personal experience created when your eyes and brain process the color stimulus.
 
-#### Putting it all together:
+##### Putting it all together:
 
 In physics, color is defined by wavelengths of light in the visible spectrum (roughly between 400 and 700 nanometers). The human eye perceives these wavelengths as different colors. For example, 400 nm wavelengths appear as a dull violet, and 700 nm as a dull red.
 
 Materials like pigments, inks, and paints are what we use to create a color stimulus, but they themselves are not "color." They work by absorbing some wavelengths of light and reflecting others, which then become the stimulus for our color sensation.
 
-### The Mechanics of Human Vision {#sec-humanVision}
+#### The Mechanics of Human Vision {#sec-humanVision}
 
 -   Brief overview of how our eyes and brain process light to create color sensation
 -   Light of various wavelengths hits the eye's lens, which focuses the light onto the light-sensitive cells in the back of the eye (the retina)
@@ -37,7 +38,7 @@ Materials like pigments, inks, and paints are what we use to create a color stim
 -   This is where the sensation of color actually begins! The visual cortex starts by processing lightness/darkness contrast, finding edges and fine details. Then, later stages separately process the color hue and chroma of the image
 -   This image is then sent to the **prefrontal cortex**, which processes that information along with other information, like emotions and memories. This all helps us to not only see but to understand what we are seeing and make sense of objects, movement, depth perception, light and color.
 
-### Colorimetry: The Science of Quantifying Color {#sec-Colorimetry}
+#### Colorimetry: The Science of Quantifying Color {#sec-Colorimetry}
 
 ::::: columns
 ::: {.column width="40%"}
@@ -77,3 +78,18 @@ The **pentagon shaped** shows the range of colors available via CMYK printing, w
 :::
 :::::
 
+##### Why HSL Fails for Accessible Color Systems
+
+While HSL (Hue, Saturation, Lightness) is popular in design tools because it's more intuitive for humans to understand than RGB, it has a critical flaw for accessibility work: its "Lightness" value is not **perceptually** uniform.
+
+In HSL, colors with the same Lightness value can have wildly different perceived brightness to the human eye. For example, at Lightness: 50%, a pure yellow (#FFFF00) appears very light and bright, while a pure blue (#0000FF) appears much darker. This inconsistency makes HSL unreliable for building color systems where you need predictable contrast ratios and consistent visual weight across different hues.
+
+##### The Solution: CIELAB and LCh Color Spaces
+
+For accessible data visualization, we recommend using CIELAB and its cylindrical representation LCh (Lightness, Chroma, hue). These color spaces are perceptually uniform. This means that a numerical change in a color's Lightness (L) value corresponds to a consistent change in how light or dark it appears to the human eye, regardless of its hue.
+
+Key advantages of CIELAB/LCh:
+
+- Predictable Contrast: Colors with the same L* value have the same perceived brightness, making contrast calculations reliable
+- Accessible-by-Design: Built-in perceptual uniformity means your palettes will be more accessible from the start
+- Consistent Visual Weight: Your qualitative palettes will have colors that feel equally "heavy" on the page
