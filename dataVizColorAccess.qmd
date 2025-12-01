@@ -4,6 +4,7 @@ subtitle: "A Guide to Color Science, Human Perception, and Accessibility"
 
 ---
 
+
 :::{.callout-note collapse="true"}
 
 ## About This Document
@@ -11,6 +12,21 @@ subtitle: "A Guide to Color Science, Human Perception, and Accessibility"
 {{< meta description >}}
 
 :::
+
+## KY Color Palettes: Preliminary Draft
+
+:::{.callout-important collapse="false"}
+### Draft Notes
+These palettes have been tested with WCAG 2.1 AA and AAA contrast standards, along with APCA standards. They have also been tested to remain visually distinct for all main CVD variants. 
+
+Note that any palette with more than *6 distinct colors* will no longer be visually distinct in greyscale (e.g., achromatic CVD).
+
+Additional palette variants (in particular sequential, diverging) once the primary categorical palette is finalized.
+
+:::
+
+
+{{< include _palette.qmd >}}
 
 {{< include _guide.qmd >}}
 

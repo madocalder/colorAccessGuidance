@@ -103,6 +103,12 @@ Follow this step-by-step workflow to build a system that is both beautiful and i
 3.  To generate the next color, move significantly in Hue (e.g., 60-90 degrees) while keeping Lightness and Chroma nearly constant.
 4.  Repeat, ensuring all colors have a similar perceived "weight" on the page.
 5.  **The Grayscale Test:** Convert your palette to grayscale (or use a tool like [Susie Lu's Viz Palette Web App](https://projects.susielu.com/viz-palette)) If the colors become muddled and hard to distinguish, adjust their Lightness values until they are clearly different even without color.
+    
+    :::{.callout-important}
+    
+    Once you get to palettes with more than 6 colors, passing the grayscale test will no longer be possible. This is one example of why even with optimized color palettes, you must avoid communicating any information with color alone.
+    
+    :::
 
 ##### Step 5: Build Sequential & Diverging Palettes
 

@@ -1,0 +1,602 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Brand Palette - Color Palette</title>
+    <style>
+        
+/* CVD Controls */
+.cvd-controls {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.vision-mode legend {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.control-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.vision-mode input[type="radio"] {
+  margin-right: 0.25rem;
+}
+
+.vision-mode label {
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.vision-mode label:hover {
+  background-color: #e9ecef;
+}
+
+.vision-mode input[type="radio"]:checked + label {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Palette Container - FIXED FOR HORIZONTAL LAYOUT */
+.palette-container {
+  display: flex;
+  flex-direction: row; /* Explicitly set to row */
+  justify-content: flex-start; /* Align items to start */
+  align-items: stretch; /* Stretch items to same height */
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 1rem 0;
+  min-height: 200px; /* Ensure consistent height */
+}
+
+/* Individual Color Swatch - HORIZONTAL LAYOUT */
+.color-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  flex: 1; /* Each swatch takes equal width */
+  min-width: 5%; /* Minimum width for each swatch */
+  max-width: 100px; /* Maximum width for each swatch */
+}
+
+/* Color Square */
+.swatch {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid #e9ecef;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.swatch:hover {
+  transform: scale(1.05);
+}
+
+.color-name {
+  font-size: 0.75rem;
+  font-weight: bold;
+  background: rgba(255,255,255,0.9);
+  padding: 0.125rem 0.25rem;
+  border-radius: 2px;
+}
+
+/* Ensure text is readable on both light and dark backgrounds */
+.swatch[style*="color: white"] .color-name {
+  background: rgba(0,0,0,0.7);
+  color: white;
+}
+
+.swatch[style*="color: black"] .color-name {
+  background: rgba(255,255,255,0.9);
+  color: black;
+}
+
+/* Swatch Information */
+.swatch-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  width: 100%;
+}
+
+.hex-code {
+  font-family: "Monaco", "Menlo", "Ubuntu Mono", monospace;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.25rem;
+  word-break: break-all;
+}
+
+.contrast-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.contrast-white,
+.contrast-black {
+  font-size: 0.7rem;
+  color: #666;
+  flex: 1;
+}
+
+.accessibility {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.w3c-aa,
+.w3c-aaa,
+.apca-bronze {
+  padding: 0.125rem 0.25rem;
+  border-radius: 2px;
+  font-size: 0.625rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.w3c-aa.pass,
+.w3c-aaa.pass,
+.apca-bronze.pass {
+  background-color: #28a745;
+  color: white;
+}
+
+.w3c-aa.fail,
+.w3c-aaa.fail,
+.apca-bronze.fail {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Status icons */
+.w3c-aa.pass::before,
+.w3c-aaa.pass::before,
+.apca-bronze.pass::before {
+  content: "✓";
+  font-weight: bold;
+}
+
+.w3c-aa.fail::before,
+.w3c-aaa.fail::before,
+.apca-bronze.fail::before {
+  content: "✗";
+  font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .palette-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .color-swatch {
+    flex: 0 1 calc(25% - 1rem);
+    min-width: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .control-group {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .color-swatch {
+    flex: 0 1 calc(33.333% - 1rem);
+  }
+  
+  .accessibility {
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  
+  .w3c-aa,
+  .w3c-aaa,
+  .apca-bronze {
+    font-size: 0.55rem;
+    padding: 0.1rem 0.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .color-swatch {
+    flex: 0 1 calc(50% - 0.5rem);
+  }
+}
+
+    </style>
+</head>
+<body>
+    
+<section class="color-palette" aria-labelledby="palette-title">
+  <h2 id="palette-title">10 Color Categorical Palette</h2>
+  
+  <div class="cvd-controls">
+    <fieldset class="vision-mode">
+      <legend>Color Vision Simulation</legend>
+      <div class="control-group">
+        <input type="radio" id="vision-normal" name="vision-mode" value="normal" checked>
+        <label for="vision-normal">Normal Vision</label>
+        
+        <input type="radio" id="vision-deuteranopia" name="vision-mode" value="deuteranopia">
+        <label for="vision-deuteranopia">Deuteranopia</label>
+        
+        <input type="radio" id="vision-protanopia" name="vision-mode" value="protanopia">
+        <label for="vision-protanopia">Protanopia</label>
+        
+        <input type="radio" id="vision-tritanopia" name="vision-mode" value="tritanopia">
+        <label for="vision-tritanopia">Tritanopia</label>
+        
+        <input type="radio" id="vision-desat50" name="vision-mode" value="desat_50">
+        <label for="vision-desat50">50% Desaturated</label>
+        
+        <input type="radio" id="vision-desat100" name="vision-mode" value="desat_100">
+        <label for="vision-desat100">Full Desaturation</label>
+      </div>
+    </fieldset>
+  </div>
+  
+  <div class="palette-container">
+    <figure class="color-swatch" data-color-id="white">
+      <div class="swatch" 
+           style="background-color: #FFFFFF; color: black;"
+           data-normal="#FFFFFF"
+           data-deuteranopia="#FFFFFF"
+           data-protanopia="#FFFFFF"
+           data-tritanopia="#FFFFFF"
+           data-desat_50="#FFFFFF"
+           data-desat_100="#FFFFFF">
+        <span class="color-name">white</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#FFFFFF</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:1.0</span>
+          <span class="contrast-black">B:21.0</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa fail" title="WCAG AA">AA ✗</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze fail" title="APCA Bronze">APCA ✗</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="black">
+      <div class="swatch" 
+           style="background-color: #000000; color: white;"
+           data-normal="#000000"
+           data-deuteranopia="#000000"
+           data-protanopia="#000000"
+           data-tritanopia="#000000"
+           data-desat_50="#000000"
+           data-desat_100="#000000">
+        <span class="color-name">black</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#000000</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:21.0</span>
+          <span class="contrast-black">B:1.0</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa pass" title="WCAG AA">AA ✓</span>
+          <span class="w3c-aaa pass" title="WCAG AAA">AAA ✓</span>
+          <span class="apca-bronze pass" title="APCA Bronze">APCA ✓</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="KY Sky Blue">
+      <div class="swatch" 
+           style="background-color: #62bcf0; color: black;"
+           data-normal="#62bcf0"
+           data-deuteranopia="#90ACEF"
+           data-protanopia="#A4BBF2"
+           data-tritanopia="#00C9CD"
+           data-desat_50="#94B7D2"
+           data-desat_100="#B3B3B3">
+        <span class="color-name">KY Sky Blue</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#62bcf0</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:2.1</span>
+          <span class="contrast-black">B:10.0</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa fail" title="WCAG AA">AA ✗</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze fail" title="APCA Bronze">APCA ✗</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Milkweed Yellow-Green">
+      <div class="swatch" 
+           style="background-color: #c7e072; color: black;"
+           data-normal="#c7e072"
+           data-deuteranopia="#E9D678"
+           data-protanopia="#ECD568"
+           data-tritanopia="#D0D6C7"
+           data-desat_50="#CEDBAA"
+           data-desat_100="#D5D5D5">
+        <span class="color-name">Milkweed Yellow-Green</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#c7e072</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:1.5</span>
+          <span class="contrast-black">B:14.3</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa fail" title="WCAG AA">AA ✗</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze fail" title="APCA Bronze">APCA ✗</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Wild Indigo Blue">
+      <div class="swatch" 
+           style="background-color: #4c6dc1; color: white;"
+           data-normal="#4c6dc1"
+           data-deuteranopia="#366BBF"
+           data-protanopia="#4776C4"
+           data-tritanopia="#00808D"
+           data-desat_50="#636F9A"
+           data-desat_100="#707070">
+        <span class="color-name">Wild Indigo Blue</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#4c6dc1</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:4.9</span>
+          <span class="contrast-black">B:4.3</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa pass" title="WCAG AA">AA ✓</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze pass" title="APCA Bronze">APCA ✓</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Grosbeak Navy">
+      <div class="swatch" 
+           style="background-color: #29326a; color: white;"
+           data-normal="#29326a"
+           data-deuteranopia="#093469"
+           data-protanopia="#153A6C"
+           data-tritanopia="#003F49"
+           data-desat_50="#323551"
+           data-desat_100="#373737">
+        <span class="color-name">Grosbeak Navy</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#29326a</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:11.9</span>
+          <span class="contrast-black">B:1.8</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa pass" title="WCAG AA">AA ✓</span>
+          <span class="w3c-aaa pass" title="WCAG AAA">AAA ✓</span>
+          <span class="apca-bronze pass" title="APCA Bronze">APCA ✓</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Coneflower Purple">
+      <div class="swatch" 
+           style="background-color: #a572b2; color: black;"
+           data-normal="#a572b2"
+           data-deuteranopia="#7686B0"
+           data-protanopia="#6A81B4"
+           data-tritanopia="#A6798A"
+           data-desat_50="#957C9C"
+           data-desat_100="#848484">
+        <span class="color-name">Coneflower Purple</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#a572b2</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:3.7</span>
+          <span class="contrast-black">B:5.6</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa fail" title="WCAG AA">AA ✗</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze pass" title="APCA Bronze">APCA ✓</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Deep River Teal">
+      <div class="swatch" 
+           style="background-color: #28655a; color: white;"
+           data-normal="#28655a"
+           data-deuteranopia="#58585B"
+           data-protanopia="#615F5A"
+           data-tritanopia="#006762"
+           data-desat_50="#47605B"
+           data-desat_100="#5B5B5B">
+        <span class="color-name">Deep River Teal</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#28655a</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:6.8</span>
+          <span class="contrast-black">B:3.1</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa pass" title="WCAG AA">AA ✓</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze pass" title="APCA Bronze">APCA ✓</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Pale Persimmon">
+      <div class="swatch" 
+           style="background-color: #df997c; color: black;"
+           data-normal="#df997c"
+           data-deuteranopia="#BBAF7C"
+           data-protanopia="#ABA17A"
+           data-tritanopia="#EF8D91"
+           data-desat_50="#C7A194"
+           data-desat_100="#A9A9A9">
+        <span class="color-name">Pale Persimmon</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#df997c</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:2.3</span>
+          <span class="contrast-black">B:9.0</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa fail" title="WCAG AA">AA ✗</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze fail" title="APCA Bronze">APCA ✗</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Deep Leaf Green">
+      <div class="swatch" 
+           style="background-color: #2b4d0a; color: white;"
+           data-normal="#2b4d0a"
+           data-deuteranopia="#4C4312"
+           data-protanopia="#504600"
+           data-tritanopia="#2B4A41"
+           data-desat_50="#38492F"
+           data-desat_100="#444444">
+        <span class="color-name">Deep Leaf Green</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#2b4d0a</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:9.7</span>
+          <span class="contrast-black">B:2.2</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa pass" title="WCAG AA">AA ✓</span>
+          <span class="w3c-aaa pass" title="WCAG AAA">AAA ✓</span>
+          <span class="apca-bronze pass" title="APCA Bronze">APCA ✓</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Goldenrod Yellow">
+      <div class="swatch" 
+           style="background-color: #ddb71a; color: black;"
+           data-normal="#ddb71a"
+           data-deuteranopia="#D6BF29"
+           data-protanopia="#CCB400"
+           data-tritanopia="#F0A79C"
+           data-desat_50="#CEB985"
+           data-desat_100="#BABABA">
+        <span class="color-name">Goldenrod Yellow</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#ddb71a</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:1.9</span>
+          <span class="contrast-black">B:10.9</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa fail" title="WCAG AA">AA ✗</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze fail" title="APCA Bronze">APCA ✗</span>
+        </div>
+      </figcaption>
+    </figure>
+    <figure class="color-swatch" data-color-id="Viceroy Red-Orange">
+      <div class="swatch" 
+           style="background-color: #be3c00; color: white;"
+           data-normal="#be3c00"
+           data-deuteranopia="#837400"
+           data-protanopia="#635700"
+           data-tritanopia="#D20633"
+           data-desat_50="#9E5549"
+           data-desat_100="#696969">
+        <span class="color-name">Viceroy Red-Orange</span>
+      </div>
+      <figcaption class="swatch-info">
+        <span class="hex-code">#be3c00</span>
+        <div class="contrast-info">
+          <span class="contrast-white">W:5.5</span>
+          <span class="contrast-black">B:3.8</span>
+        </div>
+        <div class="accessibility">
+          <span class="w3c-aa pass" title="WCAG AA">AA ✓</span>
+          <span class="w3c-aaa fail" title="WCAG AAA">AAA ✗</span>
+          <span class="apca-bronze pass" title="APCA Bronze">APCA ✓</span>
+        </div>
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const visionControls = document.querySelectorAll('input[name="vision-mode"]');
+  const colorSwatches = document.querySelectorAll('.color-swatch');
+  
+  function updateColorVision(mode) {
+    colorSwatches.forEach(swatch => {
+      const swatchDiv = swatch.querySelector('.swatch');
+      const hexCode = swatch.querySelector('.hex-code');
+      
+      if (mode === "normal") {
+        const normalColor = swatchDiv.getAttribute("data-normal");
+        swatchDiv.style.backgroundColor = normalColor;
+        hexCode.textContent = normalColor;
+      } else {
+        const simulatedColor = swatchDiv.getAttribute(`data-${mode}`);
+        swatchDiv.style.backgroundColor = simulatedColor;
+        hexCode.textContent = simulatedColor;
+      }
+    });
+  }
+  
+  // Add event listeners to radio buttons
+  visionControls.forEach(control => {
+    control.addEventListener("change", function() {
+      if (this.checked) {
+        updateColorVision(this.value);
+      }
+    });
+  });
+  
+  // Initialize with normal vision
+  updateColorVision("normal");
+});
+</script>
+</body>
+</html>

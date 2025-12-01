@@ -1,0 +1,159 @@
+---
+format: html
+---
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| results: asis
+
+library(colorspace)
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(knitr)
+
+# Palette Definitions -----
+color_details <- list(
+  list(color = "#62bcf0", name = "KY Sky Blue", textColor = "black"),
+  list(color = "#c7e072", name = "Pale Milkweed Yellow-Green", textColor = "black"),
+  list(color = "#4c6dc1", name = "Wild Indigo Blue", textColor = "white"),
+  list(color = "#29326a", name = "Grosbeak Navy", textColor = "white"),
+  list(color = "#a572b2", name = "Coneflower Purple", textColor = "black"),
+  list(color = "#28655a", name = "Deep River Teal", textColor = "white"),
+  list(color = "#df997c", name = "Pale Persimmon", textColor = "black"),
+  list(color = "#2b4d0a", name = "Deep Leaf Green", textColor = "white"),
+  list(color = "#ddb71a", name = "Goldenrod Yellow", textColor = "black"),
+  list(color = "#be3c00", name = "Viceroy Red-Orange", textColor = "white"),
+  list(color = "#ebebeb", name = "Pearl Grey", textColor = "black"),
+  list(color = "#b0d7ed", name = "Lightest Blue", textColor = "black"),
+  list(color = "#01203d", name = "Darkest Blue", textColor = "white"),
+  list(color = "#e8f3c0", name = "Lightest Yellow-Green", textColor = "black"),
+  list(color = "#9db957", name = "Deep Yellow-Green", textColor = "black"),
+  list(color = "#76933c", name = "Darkest Yellow-Green", textColor = "white"),
+  list(color = "#4f6f23", name = "Leaf Green", textColor = "white"),
+  list(color = "#142405", name = "Darkest Green", textColor = "white")
+)
+
+# Create lookup tables
+color_lookup <- setNames(
+  map(color_details, ~list(name = .x$name, textColor = .x$textColor)),
+  map_chr(color_details, ~.x$color)
+)
+
+categoricalPalettes <- list(
+  "10 Categorical + Grey" =  c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#2b4d0a", "#ddb71a", "#be3c00", "#ebebeb"),
+  "10 Categorical" =  c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#2b4d0a", "#ddb71a", "#be3c00"),
+  "9 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#ddb71a", "#be3c00", "#ebebeb"),
+  "9 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#ddb71a", "#be3c00"),
+  "8 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#be3c00", "#ebebeb"),
+  "8 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#be3c00"),
+  "7 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#be3c00","#ebebeb"),
+  "7 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#be3c00"),
+  "6 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#ebebeb"),
+  "6 Categorical" =  c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a"),
+  "5 Categorical + Grey" = c("#62bcf0", "#c7e072", "#a572b2", "#29326a", "#28655a", "#ebebeb"),
+  "5 Categorical (Alt)" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#29326a"),
+  "4 Categorical + Grey" = c("#62bcf0", "#c7e072", "#29326a", "#28655a", "#ebebeb"),
+  "4 Categorical" = c("#62bcf0", "#c7e072", "#29326a", "#28655a"),
+  "3 Categorical + Grey" = c("#62bcf0", "#c7e072", "#29326a", "#ebebeb"),
+  "3 Categorical" = c("#62bcf0", "#c7e072", "#29326a")
+)
+
+sequentialDivergingPalettes <- list(
+  "7-Color Sequential (yellow-green)" = c("#e8f3c0", "#c7e072", "#9db957", "#76933c", "#4f6f23", "#2b4d0a", "#142405"),
+  "5-Color Sequential + Grey (blues)" = c("#ebebeb", "#b0d7ed", "#62bcf0", "#4c6dc1", "#29326a", "#01203d"),
+  "7-Color Diverging (blue & yellow-green)" = c("#01203d", "#4c6dc1", "#62bcf0", "#ebebeb", "#c7e072", "#76933c", "#2b4d0a"),
+  "9-Color Diverging (blue & yellow-green)" = c("#01203d", "#4c6dc1", "#62bcf0", "#b0d7ed", "#ebebeb", "#c7e072", "#76933c", "#2b4d0a", "#142405")
+)
+
+dualColorPalettes <- list(
+  "2 Category (Blues)" = c("#62bcf0", "#29326a"),
+  "2 Category (Yellow-Green & Teal)" = c("#c7e072", "#28655a"),
+  "Highlight Categorical" = c("#4c6dc1", "#ebebeb"),
+  "Highlight Categorical (Alt)" = c("#be3c00", "#ebebeb")
+)
+
+# Minimal HTML approach - just spans with background color
+cat("<style>span.color-swatch { display: inline-block; width: 50px; height: 50px; margin: 2px; border: 1px solid #ccc; }</style>\n\n")
+
+
+# Function to display palette with inline color squares
+display_palette_with_squares <- function(palette, palette_name) {
+  cat(paste0("#### ", palette_name, "\n\n"))
+  
+  # Create a row of color squares
+  for (hex in palette) {
+    details <- color_lookup[[hex]]
+    if (is.null(details)) {
+      name <- "Unknown"
+    } else {
+      name <- details$name
+    }
+    
+    # Create a simple color square
+    cat(sprintf('<span class="color-swatch" style="background-color: %s;" title="%s: %s"></span> ', hex, name, hex))
+  }
+  
+  # Add color details below
+  cat("\n\n")
+  for (hex in palette) {
+    details <- color_lookup[[hex]]
+    if (is.null(details)) {
+      name <- "Unknown"
+    } else {
+      name <- details$name
+    }
+    cat(sprintf("- `%s` — **%s**  \n", hex, name))
+  }
+  cat("\n")
+}
+
+# Display all palette groups
+cat("\n### Categorical Palettes\n\n")
+
+swatchplot(categoricalPalettes, border = "black", sborder = "transparent")
+
+cat("\n")
+
+cat('\n::: {.callout-note collapse="true"}\n\n')
+cat("\n## Categorical Palette Details\n\n")
+
+walk2(categoricalPalettes, names(categoricalPalettes), display_palette_with_squares)
+
+cat("\n::: \n")
+
+cat("\n---\n\n")
+
+
+cat("\n### Sequential & Diverging Palettes\n\n")
+
+swatchplot(sequentialDivergingPalettes, border = "black", sborder = "transparent")
+cat("\n")
+
+cat('\n::: {.callout-note collapse="true"}\n\n')
+cat("\n## Sequential & Diverging Palette Details\n\n")
+
+walk2(sequentialDivergingPalettes, names(sequentialDivergingPalettes), display_palette_with_squares)
+
+cat("\n::: \n")
+
+cat("\n---\n\n")
+
+
+
+cat("\n### Dual Color Palettes\n\n")
+swatchplot(dualColorPalettes, border = "black", sborder = "transparent")
+cat("\n")
+
+cat('\n::: {.callout-note collapse="true"}\n\n')
+cat("\n## Dual Color Palette Details\n\n")
+
+walk2(dualColorPalettes, names(dualColorPalettes), display_palette_with_squares)
+
+cat("\n::: \n")
+
+```
+
+
