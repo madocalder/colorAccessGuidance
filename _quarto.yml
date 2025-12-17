@@ -26,8 +26,9 @@ format:
       - title-block.html
     page-layout: full
     other-links:
-    - text: Download Word Doc
+    - text: Word Doc
       href: dataVizColorAccess.docx
+      icon: filetype-docx
     comments:
       hypothesis: true
     grid:
@@ -46,9 +47,4 @@ format:
     title-block-categories: true
     fig-responsive: true
     link-external-icon: true
-  docx:
-    prefer-html: true
-    dpi: 300
-    fig-format: svg
-    fig-dpi: 300
-format-links: [docx]
+

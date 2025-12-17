@@ -272,8 +272,8 @@ create_palette_chart <- function(palette, palette_name) {
     hc_tooltip(
       useHTML = TRUE,
       # headerFormat = "{key}",
-      pointFormat = "{point.tooltipText} <br> 
-      *Click to copy hex code!*"
+      pointFormat = "<i>Click to copy hex code!</i> <br> {point.tooltipText} 
+      "
     ) %>%
     hc_exporting(enabled = FALSE) %>%
     hc_add_theme(astho_theme

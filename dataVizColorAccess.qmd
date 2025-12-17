@@ -2,17 +2,14 @@
 title: "Designing with Color for Inclusive and Effective Data Visualization"
 subtitle: "A Guide to Color Science, Human Perception, and Accessibility"
 toc: true
-format-links: [docx]
+language:
+  other-links-title: "Other Formats"
 format: 
   html:
     other-links:
-    - text: Download Word Doc
+    - text: Word Doc
       href: dataVizColorAccess.docx
-  docx:
-    prefer-html: true
-    dpi: 300
-    fig-format: svg
-    fig-dpi: 300
+      icon: filetype-docx
 ---
 
 
@@ -24,7 +21,7 @@ format:
 
 :::
 
-## KY Color Palettes: Preliminary Draft
+## KY Color Palettes: Revised Draft
 
 :::{.callout-important collapse="false"}
 ### Draft Notes
