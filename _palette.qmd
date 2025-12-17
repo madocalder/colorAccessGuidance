@@ -3,157 +3,480 @@ format: html
 ---
 
 ```{r}
-#| echo: false
-#| message: false
-#| warning: false
-#| results: asis
-
-library(colorspace)
+#| include: false
+# Load required libraries
+library(highcharter)
 library(dplyr)
 library(purrr)
-library(tidyr)
-library(knitr)
+library(colorspace)
+library(htmltools)
 
-# Palette Definitions -----
+main_blue <- "#005182"
+light_blue <- "#70C4E8"
+main_orange <- "#C65227"
+dark_orange <- "#90361F"
+main_yellow <- "#EBB41F"
+light_yellow <- "#FFD780"
+NA_color <- "#E6E1E7"
+dark_accent <- "#242c3d"
+light_accent <- "#cae6f2"
+icon_accent <- "#47BA83"
+main_colors <- c(light_blue, main_orange, main_yellow, icon_accent, main_blue)
+
+astho_theme <- hc_theme(
+  chart = list(
+    backgroundColor = NULL),
+  style = list(
+    fontFamily = "Jost",
+    fontSize = '1.2em'),
+  title = list(
+    style = list(
+      color = dark_accent,
+      fontFamily = "Jost",
+      fontWeight = "bold")),
+  subtitle = list(
+    style = list(
+      color = dark_accent,
+      fontFamily = "Jost")),
+  caption = list(
+    style = list(
+      color = "#666",
+      fontFamily = "Jost")),
+  xAxis = list(
+    labels = list(
+      style = list(
+        fontFamily = "Jost",
+        fontWeight = "normal",
+        color = "#666")),
+    title = list(
+      style = list(
+        color = dark_accent,
+        fontFamily = "Jost"
+        # ,
+        # fontWeight = "500"
+      ))),
+  yAxis = list(
+    labels = list(
+      style = list(
+        fontFamily = "Jost",
+        fontWeight = "normal",
+        color = "#666")),
+    title = list(
+      style = list(
+        color = dark_accent,
+        fontFamily = "Jost",
+        fontWeight = "500"
+      ))),
+  legend = list(
+    itemStyle = list(
+      fontFamily = "Jost",
+      color = dark_accent,
+      fontWeight = "normal",
+      color = "#666"),
+    title = list(
+      style = list(
+        textDecoration = "underline",
+        fontFamily = "Jost"
+      ))),
+  tooltip = list(
+    padding = 10,
+    borderRadius = 20,
+    backgroundColor = "#fff",
+    style = list(
+      fontFamily = "Jost",
+      maxWidth = "50%",
+      whiteSpace = "normal")),
+  useHTML = TRUE
+) #end of code for the astho theme
+
+
+
+```
+
+```{r}
+#| label: setup
+#| include: false
+# Create a simpler, Quarto-compatible function
+
+# Define your color details
 color_details <- list(
-  list(color = "#62bcf0", name = "KY Sky Blue", textColor = "black"),
-  list(color = "#c7e072", name = "Pale Milkweed Yellow-Green", textColor = "black"),
-  list(color = "#4c6dc1", name = "Wild Indigo Blue", textColor = "white"),
-  list(color = "#29326a", name = "Grosbeak Navy", textColor = "white"),
-  list(color = "#a572b2", name = "Coneflower Purple", textColor = "black"),
-  list(color = "#28655a", name = "Deep River Teal", textColor = "white"),
-  list(color = "#df997c", name = "Pale Persimmon", textColor = "black"),
-  list(color = "#2b4d0a", name = "Deep Leaf Green", textColor = "white"),
-  list(color = "#ddb71a", name = "Goldenrod Yellow", textColor = "black"),
-  list(color = "#be3c00", name = "Viceroy Red-Orange", textColor = "white"),
-  list(color = "#ebebeb", name = "Pearl Grey", textColor = "black"),
-  list(color = "#b0d7ed", name = "Lightest Blue", textColor = "black"),
-  list(color = "#01203d", name = "Darkest Blue", textColor = "white"),
-  list(color = "#e8f3c0", name = "Lightest Yellow-Green", textColor = "black"),
-  list(color = "#9db957", name = "Deep Yellow-Green", textColor = "black"),
-  list(color = "#76933c", name = "Darkest Yellow-Green", textColor = "white"),
-  list(color = "#4f6f23", name = "Leaf Green", textColor = "white"),
-  list(color = "#142405", name = "Darkest Green", textColor = "white")
+  list(color = "#62bcf0", name = "KY Sky Blue", cat = "primary"),
+  list(color = "#c7e072", name = "Pale Milkweed Yellow-Green", cat = "primary"),
+  list(color = "#4c6dc1", name = "Wild Indigo Blue", cat = "primary"),
+  list(color = "#29326a", name = "Grosbeak Navy", cat = "primary"),
+  list(color = "#a572b2", name = "Coneflower Purple", cat = "primary"),
+  list(color = "#28655a", name = "Deep River Teal", cat = "primary"),
+  list(color = "#76933c", name = "Leaf Green", cat = "primary"),
+  list(color = "#b0d7ed", name = "Pale Moon Blue", cat = "primary"),
+  list(color = "#ebebeb", name = "Pearl Grey", cat = "null"),
+  list(color = "#a4a4a4", name = "Deep Grey", cat = "null"),
+  list(color = "#e8f3c0", name = "Lightest Yellow-Green", cat = "secondary"),
+  list(color = "#c8dd86", name = "Pale Yellow-Green", cat = "secondary"),
+  list(color = "#abc465", name = "Medium Yellow-Green", cat = "secondary"),
+  list(color = "#90ac4e", name = "Yellow-Green", cat = "secondary"),
+  list(color = "#9ec371", name = "Light Leaf Green", cat = "secondary"),
+  list(color = "#74a76f", name = "Medium Green", cat = "secondary"),
+  list(color = "#468c6c", name = "Medium Teal", cat = "secondary"),
+  list(color = "#ede2ef", name = "Lightest Pale Purple", cat = "secondary"),
+  list(color = "#dbc5e0", name = "Light Pale Purple", cat = "secondary"),
+  list(color = "#ac94c6", name = "Medium Pale Purple", cat = "secondary"),
+  list(color = "#c9a9d1", name = "Pale Purple", cat = "secondary"),
+  list(color = "#e9c5f1", name = "Light Purple", cat = "secondary"),
+  list(color = "#b78dc1", name = "Medium Purple", cat = "secondary"),
+  list(color = "#b2a9d5", name = "Lightest Pale Indigo", cat = "secondary"),
+  list(color = "#878dca", name = "Pale Indigo", cat = "secondary"),
+  list(color = "#b5b6da", name = "Pale Blue-Purple", cat = "secondary"),
+  list(color = "#c2d6ed", name = "Lightest Pale Blue-Purple", cat = "secondary"),
+  list(color = "#dcf3ff", name = "Lightest Pale Blue", cat = "secondary"),
+  list(color = "#5e97d6", name = "Medium Sky Blue", cat = "secondary"),
+  list(color = "#5673be", name = "Medium Indigo", cat = "secondary")
 )
 
-# Create lookup tables
-color_lookup <- setNames(
-  map(color_details, ~list(name = .x$name, textColor = .x$textColor)),
-  map_chr(color_details, ~.x$color)
-)
+# Create lookup table
+color_lookup <- list()
+for (item in color_details) {
+  color_lookup[[item$color]] <- list(name = item$name, cat = item$cat)
+}
 
+# Define your palettes
 categoricalPalettes <- list(
-  "10 Categorical + Grey" =  c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#2b4d0a", "#ddb71a", "#be3c00", "#ebebeb"),
-  "10 Categorical" =  c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#2b4d0a", "#ddb71a", "#be3c00"),
-  "9 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#ddb71a", "#be3c00", "#ebebeb"),
-  "9 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#ddb71a", "#be3c00"),
-  "8 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#be3c00", "#ebebeb"),
-  "8 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#df997c", "#be3c00"),
-  "7 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#be3c00","#ebebeb"),
-  "7 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#be3c00"),
+  "8 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#a572b2", "#28655a", "#29326a", "#76933c", "#b0d7ed"),
+  "7 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#76933c", "#ebebeb"),
+  "7 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#76933c"),
   "6 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a", "#ebebeb"),
-  "6 Categorical" =  c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a"),
+  "6 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#29326a", "#a572b2", "#28655a"),
   "5 Categorical + Grey" = c("#62bcf0", "#c7e072", "#a572b2", "#29326a", "#28655a", "#ebebeb"),
-  "5 Categorical (Alt)" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#29326a"),
-  "4 Categorical + Grey" = c("#62bcf0", "#c7e072", "#29326a", "#28655a", "#ebebeb"),
-  "4 Categorical" = c("#62bcf0", "#c7e072", "#29326a", "#28655a"),
+  "5 Categorical (Alt)" = c("#4c6dc1", "#28655a", "#29326a", "#a572b2", "#76933c"),
+  "4 Categorical + Grey" = c("#62bcf0", "#c7e072", "#a572b2", "#76933c", "#ebebeb"),
+  "4 Categorical" = c("#4c6dc1", "#76933c", "#29326a", "#28655a"),
+  "4 Categorical (Alt)" = c("#62bcf0", "#c7e072", "#a572b2", "#76933c"),
   "3 Categorical + Grey" = c("#62bcf0", "#c7e072", "#29326a", "#ebebeb"),
   "3 Categorical" = c("#62bcf0", "#c7e072", "#29326a")
 )
 
 sequentialDivergingPalettes <- list(
-  "7-Color Sequential (yellow-green)" = c("#e8f3c0", "#c7e072", "#9db957", "#76933c", "#4f6f23", "#2b4d0a", "#142405"),
-  "5-Color Sequential + Grey (blues)" = c("#ebebeb", "#b0d7ed", "#62bcf0", "#4c6dc1", "#29326a", "#01203d"),
-  "7-Color Diverging (blue & yellow-green)" = c("#01203d", "#4c6dc1", "#62bcf0", "#ebebeb", "#c7e072", "#76933c", "#2b4d0a"),
-  "9-Color Diverging (blue & yellow-green)" = c("#01203d", "#4c6dc1", "#62bcf0", "#b0d7ed", "#ebebeb", "#c7e072", "#76933c", "#2b4d0a", "#142405")
+  "5-Color Sequential (yellow-green)" = c("#e8f3c0", "#c8dd86", "#abc465", "#90ac4e", "#76933c"),
+  "5-Color Sequential (blue)" = c("#ebebeb", "#b0d7ed", "#62bcf0", "#5e97d6", "#5673be"),
+  "5-Color Sequential (purple)" = c("#ede2ef", "#dbc5e0", "#c9a9d1", "#b78dc1", "#a572b2"),
+  "5-Color Sequential (multi-hue green)" = c("#e8f3c0", "#c7e072", "#9ec371", "#74a76f", "#468c6c"),
+  "5-Color Sequential (multi-hue purple-blue)" = c("#ede2ef", "#dbc5e0", "#b2a9d5", "#878dca", "#5673be"),
+  "5-Color Sequential (multi-hue blue-purple)" = c("#dcf3ff", "#c2d6ed", "#b5b6da", "#ac94c6", "#a572b2"),
+  "5-Color Diverging (blue & yellow-green)" = c("#5e97d6", "#62bcf0", "#ebebeb", "#c7e072", "#76933c"),
+  "5-Color Diverging (green & purple)" = c("#76933c", "#c7e072", "#ebebeb", "#e9c5f1", "#a572b2")
 )
 
 dualColorPalettes <- list(
   "2 Category (Blues)" = c("#62bcf0", "#29326a"),
   "2 Category (Yellow-Green & Teal)" = c("#c7e072", "#28655a"),
   "Highlight Categorical" = c("#4c6dc1", "#ebebeb"),
-  "Highlight Categorical (Alt)" = c("#be3c00", "#ebebeb")
+  "Highlight Categorical (Alt)" = c("#a572b2", "#ebebeb")
 )
-
-# Minimal HTML approach - just spans with background color
-cat("<style>span.color-swatch { display: inline-block; width: 50px; height: 50px; margin: 2px; border: 1px solid #ccc; }</style>\n\n")
-
-
-# Function to display palette with inline color squares
-display_palette_with_squares <- function(palette, palette_name) {
-  cat(paste0("#### ", palette_name, "\n\n"))
-  
-  # Create a row of color squares
-  for (hex in palette) {
-    details <- color_lookup[[hex]]
-    if (is.null(details)) {
-      name <- "Unknown"
-    } else {
-      name <- details$name
-    }
-    
-    # Create a simple color square
-    cat(sprintf('<span class="color-swatch" style="background-color: %s;" title="%s: %s"></span> ', hex, name, hex))
-  }
-  
-  # Add color details below
-  cat("\n\n")
-  for (hex in palette) {
-    details <- color_lookup[[hex]]
-    if (is.null(details)) {
-      name <- "Unknown"
-    } else {
-      name <- details$name
-    }
-    cat(sprintf("- `%s` — **%s**  \n", hex, name))
-  }
-  cat("\n")
-}
-
-# Display all palette groups
-cat("\n### Categorical Palettes\n\n")
-
-swatchplot(categoricalPalettes, border = "black", sborder = "transparent")
-
-cat("\n")
-
-cat('\n::: {.callout-note collapse="true"}\n\n')
-cat("\n## Categorical Palette Details\n\n")
-
-walk2(categoricalPalettes, names(categoricalPalettes), display_palette_with_squares)
-
-cat("\n::: \n")
-
-cat("\n---\n\n")
-
-
-cat("\n### Sequential & Diverging Palettes\n\n")
-
-swatchplot(sequentialDivergingPalettes, border = "black", sborder = "transparent")
-cat("\n")
-
-cat('\n::: {.callout-note collapse="true"}\n\n')
-cat("\n## Sequential & Diverging Palette Details\n\n")
-
-walk2(sequentialDivergingPalettes, names(sequentialDivergingPalettes), display_palette_with_squares)
-
-cat("\n::: \n")
-
-cat("\n---\n\n")
-
-
-
-cat("\n### Dual Color Palettes\n\n")
-swatchplot(dualColorPalettes, border = "black", sborder = "transparent")
-cat("\n")
-
-cat('\n::: {.callout-note collapse="true"}\n\n')
-cat("\n## Dual Color Palette Details\n\n")
-
-walk2(dualColorPalettes, names(dualColorPalettes), display_palette_with_squares)
-
-cat("\n::: \n")
 
 ```
 
+```{r}
+#| echo: false
+#| warning: false
 
+create_palette_chart <- function(palette, palette_name) {
+  colors <- unname(palette)
+  
+  # Prepare data for chart
+  data <- tibble(
+    color = colors,
+    name = map_chr(colors, ~ifelse(is.null(color_lookup[[.x]]$name), "Unknown", color_lookup[[.x]]$name)),
+    hex = colors,
+    y = 100,
+    blackWCAG = colorspace::contrast_ratio(hex, "black", algorithm = "WCAG"),
+    whiteWCAG = colorspace::contrast_ratio(hex, "white", algorithm = "WCAG"),
+    blackAPCA = map_dbl(colors, ~{
+      colorspace::contrast_ratio(.x, "black", algorithm = "APCA")[1, "reverse"]
+    }),
+    whiteAPCA = map_dbl(colors, ~{
+      colorspace::contrast_ratio(.x, "white", algorithm = "APCA")[1, "reverse"]
+    }),
+    tooltipText = paste0(
+      "<b>", hex, "</b> <br>",
+      "WCAG Contrast (Black/White):", round(blackWCAG, 1), "/", round(whiteWCAG, 1), "<br>",
+      "APCA Contrast (Black/White):", round(blackAPCA, 1), "/", round(whiteAPCA, 1)
+    )
+  )
+  
+  # View(data)
+  
+  # Create chart with click event using hc_plotOptions
+  hc <- highchart() %>%
+    hc_add_dependency("modules/pattern-fill.js") %>%
+    hc_chart(type = "column") %>%
+    hc_title(text = palette_name, align = "left") %>%
+    hc_xAxis(categories = data$name, 
+             title = list(text = NULL)
+             ) %>%
+    hc_yAxis(title = list(text = ""), 
+             min = 0, max = 100,
+             labels = list(enabled = FALSE),
+             gridLineWidth = 0) %>%
+    hc_plotOptions(
+      series = list(
+        cursor = "pointer",
+        point = list(
+          events = list(
+            click = JS("function() {
+  var hex = this.hex;
+  var tempTextArea = document.createElement('textarea');
+  tempTextArea.value = hex;
+  document.body.appendChild(tempTextArea);
+  tempTextArea.select();
+  tempTextArea.setSelectionRange(0, 99999);
+  
+  try {
+    var successful = document.execCommand('copy');
+    document.body.removeChild(tempTextArea);
+    if (successful) {
+      alert('Copied to clipboard: ' + hex);
+    } else {
+      alert('Copy failed. Try selecting and copying manually.');
+    }
+  } catch (err) {
+    document.body.removeChild(tempTextArea);
+    alert('Failed to copy: ' + err);
+  }
+}")         
+            )
+        )
+      ),
+      column = list(
+        pointPadding = 0,
+        groupPadding = 0,
+        borderWidth = 1,
+        borderColor = "#000000",
+        dataLabels = list(
+          enabled = TRUE,
+          format = "{point.hex}",
+          style = list(
+            fontSize = "1em",
+            fontWeight = "bold",
+            textOutline = "0px",
+            color = "#000000"
+          )
+        )
+      )
+    ) %>%
+    hc_add_series(
+      data = data,
+      name = "Colors",
+      showInLegend = FALSE,
+      colorByPoint = TRUE
+    ) %>%
+    hc_colors(colors) %>%
+    hc_tooltip(
+      useHTML = TRUE,
+      # headerFormat = "{key}",
+      pointFormat = "{point.tooltipText} <br> 
+      *Click to copy hex code!*"
+    ) %>%
+    hc_exporting(enabled = FALSE) %>%
+    hc_add_theme(astho_theme
+    )  %>%
+    hc_size(height = 200)
+  
+  return(hc)
+}
+
+# Create all charts in a list
+all_charts <- list()
+
+# Add categorical charts
+for (name in names(categoricalPalettes)) {
+  all_charts[[paste0("cat_", name)]] <- create_palette_chart(
+    categoricalPalettes[[name]], name
+  )
+}
+
+# Add sequential charts
+for (name in names(sequentialDivergingPalettes)) {
+  all_charts[[paste0("seq_", name)]] <- create_palette_chart(
+    sequentialDivergingPalettes[[name]], name
+  )
+}
+
+# Add dual charts
+for (name in names(dualColorPalettes)) {
+  all_charts[[paste0("dual_", name)]] <- create_palette_chart(
+    dualColorPalettes[[name]], name
+  )
+}
+
+
+
+
+```
+
+### Categorical Palettes
+
+```{r}
+#| echo: false
+#| warning: false
+
+htmltools::browsable(all_charts[[1]])
+htmltools::browsable(all_charts[[2]])
+htmltools::browsable(all_charts[[3]])
+htmltools::browsable(all_charts[[4]])
+htmltools::browsable(all_charts[[5]])
+htmltools::browsable(all_charts[[6]])
+htmltools::browsable(all_charts[[7]])
+htmltools::browsable(all_charts[[8]])
+htmltools::browsable(all_charts[[9]])
+htmltools::browsable(all_charts[[10]])
+htmltools::browsable(all_charts[[11]])
+htmltools::browsable(all_charts[[12]])
+
+
+```
+
+### Sequential & Diverging Palettes
+
+```{r}
+#| echo: false
+#| warning: false
+
+htmltools::browsable(all_charts[[13]])
+htmltools::browsable(all_charts[[14]])
+htmltools::browsable(all_charts[[15]])
+htmltools::browsable(all_charts[[16]])
+htmltools::browsable(all_charts[[17]])
+htmltools::browsable(all_charts[[18]])
+htmltools::browsable(all_charts[[19]])
+htmltools::browsable(all_charts[[20]])
+
+
+```
+
+### Dual Color Palettes
+
+```{r}
+#| echo: false
+#| warning: false
+
+htmltools::browsable(all_charts[[21]])
+htmltools::browsable(all_charts[[22]])
+htmltools::browsable(all_charts[[23]])
+
+```
+
+### Pattern Fills
+
+```{r}
+#| echo: false
+#| warning: false
+
+
+# Create pattern palette chart
+pattern_chart <- highchart() %>%
+  hc_chart(type = "column") %>%
+  hc_title(text = "Pattern Fills", align = "left") %>%
+  hc_xAxis(
+    categories = c("Diagonal Pattern", "Grid Pattern"), 
+    title = list(text = NULL)
+  ) %>%
+  hc_yAxis(
+    title = list(text = ""), 
+    min = 0, max = 100,
+    labels = list(enabled = FALSE),
+    gridLineWidth = 0
+  ) %>%
+  hc_plotOptions(
+    # series = list(
+    #   cursor = "pointer",
+    #   point = list(
+    #     events = list(
+    #       click = JS("function() {
+    #         var patternName = this.name;
+    #         var bgColor = '#ebebeb';
+    #         var lineColor = '#a4a4a4';
+    #         alert('Pattern: ' + patternName + 
+    #               '\\nBackground: ' + bgColor + ' (Pearl Grey)' +
+    #               '\\nLines: ' + lineColor + ' (Deep Grey)');
+    #       }")
+    #     )
+    #   )
+    # ),
+    column = list(
+      pointPadding = 0,
+      groupPadding = 0,
+      borderWidth = 1,
+      borderColor = "#000000",
+      dataLabels = list(
+        enabled = FALSE,
+        format = "{point.name}",
+        style = list(
+          fontSize = "1em",
+          fontWeight = "bold",
+          textOutline = "0px",
+          color = "#000000"
+        )
+      )
+    )
+  ) %>%
+  hc_add_series(
+    data = list(
+      list(
+        y = 100, 
+        name = "Diagonal Pattern",
+        ppt = "Diagonal Stripes: Wide Downward",
+        background = "Pearl Grey (#ebebeb)",
+        foreground = "Deep Grey (#a4a4a4)",
+        color = list(
+          pattern = list(
+            path = list(
+              d = 'M0,0 l12,12 M-1,11 l6,6 M11,-1 l6,6',
+              strokeWidth = 3.5
+            ),
+            backgroundColor ="#ebebeb", 
+            color = "#a4a4a4",
+            width = 12,
+            height = 12
+          )
+        )
+      ),
+      list(
+        y = 100, 
+        name = "Grid Pattern",
+        ppt = "Large Grid",
+        foreground = "Pearl Grey (#ebebeb)",
+        background = "Deep Grey (#a4a4a4)",
+        color = list(
+          pattern = list(
+            path = list(
+              d = 'M9,0 l0,18 M0,9 l18,0',
+              strokeWidth = 1
+            ),
+            backgroundColor =  "#a4a4a4",
+            color ="#ebebeb",
+            width = 18,
+            height = 18
+          )
+        )
+      )
+    ),
+    name = "Patterns",
+    showInLegend = FALSE
+  ) %>%
+  hc_tooltip(
+    useHTML = TRUE,
+    pointFormat = "Background: <b>{point.background}</b><br>
+    Lines: <b>{point.foreground}</b> <br>
+    Powerpoint Pattern Equivalent Name: <b>{point.ppt}</b>"
+  )
+
+# Load the pattern-fill module if needed
+# You might need to add this dependency if patterns don't show
+pattern_chart <- pattern_chart %>%
+  hc_add_dependency("modules/pattern-fill.js") %>%
+  hc_add_theme(astho_theme) %>%
+  hc_size(height = 250)
+
+# Display the chart
+htmltools::browsable(pattern_chart)
+
+```

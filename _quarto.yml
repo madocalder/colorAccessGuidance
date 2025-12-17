@@ -1,7 +1,7 @@
 editor: visual
 lang: en
-version: 0.1.3
-status: Draft for review and feedback
+version: 0.2.0
+status: Revised draft for review and feedback
 author:
   name: Madoc Alder Marshall
   affiliation:
@@ -25,6 +25,9 @@ format:
       - title-metadata.html
       - title-block.html
     page-layout: full
+    other-links:
+    - text: Download Word Doc
+      href: dataVizColorAccess.docx
     comments:
       hypothesis: true
     grid:
@@ -43,4 +46,9 @@ format:
     title-block-categories: true
     fig-responsive: true
     link-external-icon: true
-
+  docx:
+    prefer-html: true
+    dpi: 300
+    fig-format: svg
+    fig-dpi: 300
+format-links: [docx]

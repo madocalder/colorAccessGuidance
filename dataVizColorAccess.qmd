@@ -1,7 +1,18 @@
 ---
 title: "Designing with Color for Inclusive and Effective Data Visualization"
 subtitle: "A Guide to Color Science, Human Perception, and Accessibility"
-
+toc: true
+format-links: [docx]
+format: 
+  html:
+    other-links:
+    - text: Download Word Doc
+      href: dataVizColorAccess.docx
+  docx:
+    prefer-html: true
+    dpi: 300
+    fig-format: svg
+    fig-dpi: 300
 ---
 
 
@@ -19,9 +30,14 @@ subtitle: "A Guide to Color Science, Human Perception, and Accessibility"
 ### Draft Notes
 These palettes have been tested with WCAG 2.1 AA and AAA contrast standards, along with APCA standards. They have also been tested to remain visually distinct for all main CVD variants. 
 
-Note that any palette with more than *6 distinct colors* will no longer be visually distinct in greyscale (e.g., achromatic CVD).
+You can hover over a color to view its WCAG and APCA contrast levels for both black and white text.
 
-Additional palette variants (in particular sequential, diverging) once the primary categorical palette is finalized.
+Click on a color to copy its hex code to your clipboard.
+
+Note that any palette with more than *6 distinct colors* will no longer be visually distinct in greyscale (e.g., achromatic CVD). 
+
+
+
 
 :::
 
