@@ -6,13 +6,6 @@ language:
   other-links-title: "Other Formats"
 format: 
   html: default
-  docx:
-    reference-doc: custom-reference-doc.docx
-    fig-format: pdf
-    prefer-html: true
-    fig-width: 9
-    fig-height: 4
-format-links: [docx]
 ---
 
 ::: {.callout-note collapse="true"}

@@ -2,6 +2,8 @@
 format: html
 ---
 
+::: {.content-visible when-format="html"}
+
 ```{r}
 #| include: false
 # Load required libraries
@@ -616,3 +618,227 @@ pattern_chart <- pattern_chart %>%
 htmltools::browsable(pattern_chart)
 
 ```
+
+
+:::
+
+::: {.content-visible when-format="typst"}
+
+{{< pagebreak >}}
+
+```{=typst}
+
+// Color details with names and categories
+#let color-details = (
+  (color: "#62bcf0", name: "KY Sky Blue", cat: "primary"),
+  (color: "#c7e072", name: "Pale Milkweed Yellow-Green", cat: "primary"),
+  (color: "#4c6dc1", name: "Wild Indigo Blue", cat: "primary"),
+  (color: "#29326a", name: "Grosbeak Navy", cat: "primary"),
+  (color: "#a572b2", name: "Coneflower Purple", cat: "primary"),
+  (color: "#28655a", name: "Deep River Teal", cat: "primary"),
+  (color: "#76933c", name: "Leaf Green", cat: "primary"),
+  (color: "#b0d7ed", name: "Pale Moon Blue", cat: "primary"),
+  
+  (color: "#ebebeb", name: "Pearl Grey (suppressed)", cat: "suppressed"),
+  (color: "#a4a4a4", name: "Deep Grey (suppressed)", cat: "suppressed"),
+  (color: "#e3e1d3", name: "Threshold Greige", cat: "null"),
+  
+  (color: "#e8f3c0", name: "Lightest Yellow-Green", cat: "secondary"),
+  (color: "#c8dd86", name: "Pale Yellow-Green", cat: "secondary"),
+  (color: "#abc465", name: "Medium Yellow-Green", cat: "secondary"),
+  (color: "#90ac4e", name: "Yellow-Green", cat: "secondary"),
+  (color: "#9ec371", name: "Light Leaf Green", cat: "secondary"),
+  (color: "#74a76f", name: "Medium Green", cat: "secondary"),
+  (color: "#468c6c", name: "Medium Teal", cat: "secondary"),
+  
+  (color: "#ede2ef", name: "Lightest Pale Purple", cat: "secondary"),
+  (color: "#dbc5e0", name: "Light Pale Purple", cat: "secondary"),
+  (color: "#ac94c6", name: "Medium Pale Purple", cat: "secondary"),
+  (color: "#c9a9d1", name: "Pale Purple", cat: "secondary"),
+  (color: "#f4e2f8", name: "Lightest Purple", cat: "secondary"),
+  (color: "#e9c5f1", name: "Light Purple", cat: "secondary"),
+  (color: "#b78dc1", name: "Medium Purple", cat: "secondary"),
+  
+  (color: "#b2a9d5", name: "Lightest Pale Indigo", cat: "secondary"),
+  (color: "#878dca", name: "Pale Indigo", cat: "secondary"),
+  (color: "#5673be", name: "Medium Indigo", cat: "secondary"),
+  (color: "#b5b6da", name: "Pale Blue-Purple", cat: "secondary"),
+  (color: "#c2d6ed", name: "Lightest Pale Blue-Purple", cat: "secondary"),
+  
+  (color: "#e5f3fa", name: "Lightest Pale Blue", cat: "secondary"),
+  (color: "#dcf3ff", name: "Light Pale Blue", cat: "secondary"),
+  (color: "#5e97d6", name: "Medium Sky Blue", cat: "secondary")
+)
+
+// Create lookup table function
+#let get-color-info(hex) = {
+  for item in color-details {
+    if item.color == hex {
+      return item
+    }
+  }
+  return (color: hex, name: "Unknown", cat: "unknown")
+}
+
+// Define your palettes
+#let categorical-palettes = (
+  "8 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#b0d7ed"),
+  "7 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#ebebeb"),
+  "7 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c"),
+  "6 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#ebebeb"),
+  "6 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a"),
+  "5 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#ebebeb"),
+  "5 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2"),
+  "4 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#ebebeb"),
+  "4 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a"),
+  "3 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#ebebeb"),
+  "3 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1")
+)
+
+#let sequential-palettes = (
+  "5-Color Sequential (blue)": ("#e5f3fa", "#b0d7ed", "#62bcf0", "#5e97d6", "#5673be"),
+  "5-Color Sequential (yellow-green)": ("#e8f3c0", "#c8dd86", "#abc465", "#90ac4e", "#76933c"),
+  "5-Color Sequential (purple)": ("#ede2ef", "#dbc5e0", "#c9a9d1", "#b78dc1", "#a572b2"),
+  "5-Color Sequential (multi-hue blue-purple)": ("#dcf3ff", "#c2d6ed", "#b5b6da", "#ac94c6", "#a572b2"),
+  "5-Color Sequential (multi-hue green)": ("#e8f3c0", "#c7e072", "#9ec371", "#74a76f", "#468c6c"),
+  "5-Color Sequential (multi-hue purple-blue)": ("#ede2ef", "#dbc5e0", "#b2a9d5", "#878dca", "#5673be")
+)
+
+#let diverging-palettes = (
+  "7-Color Diverging (blue & yellow-green)": ("#5e97d6", "#62bcf0", "#b0d7ed", "#e3e1d3", "#e8f3c0", "#c7e072", "#76933c"),
+  "7-Color Diverging (green & purple)": ("#76933c", "#c7e072", "#e8f3c0", "#e3e1d3", "#f4e2f8", "#e9c5f1", "#a572b2"),
+  "6-Color Diverging (blue & yellow-green)": ("#5e97d6", "#62bcf0", "#b0d7ed", "#e8f3c0", "#c7e072", "#76933c"),
+  "6-Color Diverging (green & purple)": ("#76933c", "#c7e072", "#e8f3c0", "#f4e2f8", "#e9c5f1", "#a572b2")
+)
+
+#let dual-palettes = (
+  "2 Category (Blues)": ("#62bcf0", "#29326a"),
+  "2 Category (Purple Blue)": ("#a572b2", "#29326a"),
+  "Indigo Highlight": ("#4c6dc1", "#e3e1d3"),
+  "Purple Highlight": ("#a572b2", "#e3e1d3")
+)
+
+#let null-palettes = (
+  "Supressed & Null Values": ("#ebebeb", "#a4a4a4", "#e3e1d3")
+)
+
+// Helper function to display a color swatch with info
+#let color-swatch(hex, size: 40pt, show-name: true, show-cat: false) = {
+  let info = get-color-info(hex)
+  let content = []
+  if show-name {
+    content = [#info.name]
+  } else {
+    content = [\#hex]
+  }
+  if show-cat {
+    content = [#content -- #info.cat]
+  }
+  
+  stack(
+    dir: ltr,
+    spacing: 6pt,
+    square(size: size, fill: rgb(hex)),
+    if show-name or show-cat { content }
+  )
+}
+
+
+// Display all palettes
+#heading(level: 2)[Categorical Palettes]
+#for (name, colors) in categorical-palettes {
+  heading(level: 3)[#name]
+  grid(
+    columns: (auto,) * colors.len(),
+    gutter: 8pt,
+    ..colors.map(hex => {
+      let info = get-color-info(hex)
+      stack(
+        square(size: 40pt, fill: rgb(hex)),
+        text(size: 7pt, [#info.name]),
+        text(size: 6pt, fill: gray, [#hex])
+      )
+    })
+  )
+}
+
+#pagebreak()
+
+#heading(level: 2)[Sequential Palettes]
+#for (name, colors) in sequential-palettes {
+  heading(level: 3)[#name]
+  grid(
+    columns: (auto,) * colors.len(),
+    gutter: 8pt,
+    ..colors.map(hex => {
+      let info = get-color-info(hex)
+      stack(
+        square(size: 40pt, fill: rgb(hex)),
+        text(size: 7pt, [#info.name]),
+        text(size: 6pt, fill: gray, [#hex])
+      )
+    })
+  )
+}
+
+#pagebreak()
+
+#heading(level: 2)[Diverging Palettes]
+#for (name, colors) in diverging-palettes {
+  heading(level: 3)[#name]
+  grid(
+    columns: (auto,) * colors.len(),
+    gutter: 8pt,
+    ..colors.map(hex => {
+      let info = get-color-info(hex)
+      stack(
+        square(size: 40pt, fill: rgb(hex)),
+        text(size: 7pt, [#info.name]),
+        text(size: 6pt, fill: gray, [#hex])
+      )
+    })
+  )
+}
+
+#pagebreak()
+
+#heading(level: 2)[Dual-Color Palettes]
+#for (name, colors) in dual-palettes {
+  heading(level: 3)[#name]
+  grid(
+    columns: (auto,) * colors.len(),
+    gutter: 8pt,
+    ..colors.map(hex => {
+      let info = get-color-info(hex)
+      stack(
+        square(size: 40pt, fill: rgb(hex)),
+        text(size: 7pt, [#info.name]),
+        text(size: 6pt, fill: gray, [#hex])
+      )
+    })
+  )
+}
+
+#heading(level: 2)[Null & Suppressed Colors]
+#for (name, colors) in null-palettes {
+  heading(level: 3)[#name]
+  grid(
+    columns: (auto,) * colors.len(),
+    gutter: 8pt,
+    ..colors.map(hex => {
+      let info = get-color-info(hex)
+      stack(
+        square(size: 40pt, fill: rgb(hex)),
+        text(size: 7pt, [#info.name]),
+        text(size: 6pt, fill: gray, [#hex])
+      )
+    })
+  )
+}
+
+#pagebreak()
+
+```
+
+
+:::
