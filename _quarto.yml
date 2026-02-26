@@ -1,13 +1,17 @@
 editor: visual
 lang: en
 version: 1.0.0
-status: Color Palettes; Second Round Revisions
-affiliations: []
+status: Round 2 Color Palette Revisions
+author:
+  name: Madoc Alder Marshall
+  affiliation:
+    name: Association of State and Territorial Health Officials
+    url: www.astho.org
 brand: "brand.yml"
 author-meta: Madoc Alder Marshall
 description: "This guide was created to support KY in developing accessible data visualization color palettes for their larger data viz style guide ([PHIG TA Request #55967](https://asth0.monday.com/boards/4480495811/pulses/9955136601)). The urgency of this work is driven by the U.S. Department of Justice's **2026 deadline** for state and local governments to comply with updated ADA Title II rules, which mandate WCAG 2.1 AA conformance for all digital content. Our goal is to provide KY with an actionable framework to build accessible color systems that follow accessibility best practices. This document also serves as a foundational model for a broader, proactive TA resource on developing fully accessible and compliant data viz style guides."
 title-meta: "Designing with Color for Inclusive and Effective Data Visualization"
-date: 02-25-26
+date: last-modified
 published-title: 'Draft Last Modified:'
 resources:
   - static
