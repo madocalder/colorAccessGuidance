@@ -5,44 +5,39 @@ toc: true
 language:
   other-links-title: "Other Formats"
 format: 
-  html:
-    other-links:
-    - text: Word Doc
-      href: dataVizColorAccess.docx
-      icon: filetype-docx
+  html: default
+  docx:
+    reference-doc: custom-reference-doc.docx
+    fig-format: pdf
+    prefer-html: true
+    fig-width: 9
+    fig-height: 4
+format-links: [docx]
 ---
 
-
-:::{.callout-note collapse="true"}
-
+::: {.callout-note collapse="true"}
 ## About This Document
 
 {{< meta description >}}
-
 :::
 
 ## KY Color Palettes: Revised Draft
 
-:::{.callout-important collapse="false"}
+::: {.callout-important collapse="false"}
 ### Draft Notes
-These palettes have been tested with WCAG 2.1 AA and AAA contrast standards, along with APCA standards. They have also been tested to remain visually distinct for all main CVD variants. 
+
+These palettes have been tested with WCAG 2.1 AA and AAA contrast standards, along with APCA standards. They have also been tested to remain visually distinct for all main CVD variants.
 
 You can hover over a color to view its WCAG and APCA contrast levels for both black and white text.
 
 Click on a color to copy its hex code to your clipboard.
 
-Note that any palette with more than *6 distinct colors* will no longer be visually distinct in greyscale (e.g., achromatic CVD). 
-
-
-
-
+Note that any palette with more than *6 distinct colors* will no longer be visually distinct in greyscale (e.g., achromatic CVD).
 :::
-
 
 {{< include _palette.qmd >}}
 
 {{< include _guide.qmd >}}
-
 
 ## Color Science, Human Perception, and Accessibility: A Deep Dive
 
@@ -52,76 +47,97 @@ Note that any palette with more than *6 distinct colors* will no longer be visua
 
 {{< include _partThree.qmd >}}
 
-
 ## Appendix
 
 ### Terms and Definitions
 
 Additive Color Mixing
-: Creating colors by adding different wavelengths of light together (used in screens).
+
+:   Creating colors by adding different wavelengths of light together (used in screens).
 
 APCA (Accessible Perceptual Contrast Algorithm)
-: A modern method for calculating color contrast that considers human perception factors like font size and weight.
+
+:   A modern method for calculating color contrast that considers human perception factors like font size and weight.
 
 CIELAB/LCh
-: Color spaces designed around human perception that ensure colors have consistent perceived lightness.
+
+:   Color spaces designed around human perception that ensure colors have consistent perceived lightness.
 
 Cognitive Load
-: The mental effort required to understand information.
+
+:   The mental effort required to understand information.
 
 Colorimetry
-: The science and technology of quantifying and describing color and how we perceive it.
+
+:   The science and technology of quantifying and describing color and how we perceive it.
 
 Color Sensation/Perception
-: The personal experience of color that our brain creates when processing color stimuli.
+
+:   The personal experience of color that our brain creates when processing color stimuli.
 
 Color space
-: A specific system for defining and naming colors. Think of it like a recipe that uses numbers to describe a color precisely.
+
+:   A specific system for defining and naming colors. Think of it like a recipe that uses numbers to describe a color precisely.
 
 Color Stimulus
-: The physical source of color - measurable light waves or reflected wavelengths that enter our eyes.
+
+:   The physical source of color - measurable light waves or reflected wavelengths that enter our eyes.
 
 Color Vision Deficiency (CVD)
-: A condition where people have difficulty distinguishing between certain colors, often called "color blindness."
+
+:   A condition where people have difficulty distinguishing between certain colors, often called "color blindness."
 
 Cones
-: Light-sensitive cells in the retina responsible for color vision in daylight conditions.
+
+:   Light-sensitive cells in the retina responsible for color vision in daylight conditions.
 
 Contrast Sensitivity
-: How well we can detect differences between an object and its background.
+
+:   How well we can detect differences between an object and its background.
 
 Diverging Palette
-: Colors that use two contrasting hues on the ends with a neutral middle, used for data that deviates from a midpoint.
+
+:   Colors that use two contrasting hues on the ends with a neutral middle, used for data that deviates from a midpoint.
 
 HSL (Hue, Saturation, Lightness)
-: A color model that computers use but doesn't match human color perception well.
+
+:   A color model that computers use but doesn't match human color perception well.
 
 Pre-attentive Processing
-: How our brain processes visual information before we're consciously aware of it.
+
+:   How our brain processes visual information before we're consciously aware of it.
 
 Qualitative Palette
-: Colors used for categorical data that has no inherent order.
+
+:   Colors used for categorical data that has no inherent order.
 
 Retina
-: The light-sensitive layer at the back of the eye that contains cells for detecting light and color.
+
+:   The light-sensitive layer at the back of the eye that contains cells for detecting light and color.
 
 Sequential Palette
-: A color gradient from light to dark used for numeric data that goes from low to high values.
+
+:   A color gradient from light to dark used for numeric data that goes from low to high values.
 
 Subtractive Color Mixing
-: Creating colors by removing or absorbing certain wavelengths of light (used in printing).
+
+:   Creating colors by removing or absorbing certain wavelengths of light (used in printing).
 
 Visual Acuity
-: The sharpness or clarity of vision.
+
+:   The sharpness or clarity of vision.
 
 Visual Cortex
-: The part of the brain that processes visual information and creates our sensation of color.
+
+:   The part of the brain that processes visual information and creates our sensation of color.
 
 Wavelengths
-: The physical measurement of light that determines what color we see, measured in nanometers (nm).
+
+:   The physical measurement of light that determines what color we see, measured in nanometers (nm).
 
 WCAG (Web Content Accessibility Guidelines)
-: International standards for making web content accessible to people with disabilities.
+
+:   International standards for making web content accessible to people with disabilities.
 
 <!-- ## Terms and Definitions -->
 
@@ -172,6 +188,7 @@ WCAG (Web Content Accessibility Guidelines)
 ------------------------------------------------------------------------
 
 ### Resources
+
 #### Tools
 
 -   [**APCA Contrast Calculator**](https://apcacontrast.com/) - The official APCA contrast calculator for modern perceptual contrast
@@ -203,7 +220,7 @@ WCAG (Web Content Accessibility Guidelines)
 -   [**Data charts and color blindness**](https://www.sigmacomputing.com/blog/data-charts-color-blindness)
 -   [**Accessibility design: Color palettes for data visualization**](https://thevisualagency.com/tva-blog-articles/accessibility-design-color-palettes-for-data-visualization/)
 -   [**Types of Color Vision Deficiency**](https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness/types-color-blindness) - National Eye Institute (NEI), National Institutes of Health (NIH), U.S. Department of Health and Human Services (HHS)
--   [**Building color palettes in your data visualization style guides**](https://pmc.ncbi.nlm.nih.gov/articles/PMC10797256/) - 2023 research on color vision 
+-   [**Building color palettes in your data visualization style guides**](https://pmc.ncbi.nlm.nih.gov/articles/PMC10797256/) - 2023 research on color vision
 -   [**Effects of chromatic and luminance contrast on reading**](https://www.researchgate.net/publication/21147929_Effects_of_chromatic_and_luminance_contrast_on_reading) - Knoblauch et al., 1991 - Research on how contrast affects readability
 -   [**Achromatic luminance contrast sensitivity in X-linked color-deficient observers**](https://pubmed.ncbi.nlm.nih.gov/24103453/) - Márta Janáky et al., 2013 - Study on contrast sensitivity in color deficiency
 -   [**Contrast sensitivity of patients with congenital color vision deficiency**](https://pubmed.ncbi.nlm.nih.gov/29500697/) - Cagri Ilhan et al., 2018 - Recent research on contrast perception
