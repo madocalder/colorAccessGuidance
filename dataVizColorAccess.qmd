@@ -6,6 +6,8 @@ language:
   other-links-title: "Other Formats"
 format: 
   html: default
+  typst:
+    fig-format: png
 ---
 
 ::: {.callout-note collapse="true"}

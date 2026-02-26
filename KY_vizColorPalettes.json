@@ -1,0 +1,92 @@
+{
+  "color_details": [
+    {"color": "#62bcf0", "name": "KY Sky Blue", "cat": "primary", "text_color": "#000000"},
+    {"color": "#c7e072", "name": "Pale Milkweed Yellow-Green", "cat": "primary", "text_color": "#000000"},
+    {"color": "#4c6dc1", "name": "Wild Indigo Blue", "cat": "primary", "text_color": "#ffffff"},
+    {"color": "#29326a", "name": "Grosbeak Navy", "cat": "primary", "text_color": "#ffffff"},
+    {"color": "#a572b2", "name": "Coneflower Purple", "cat": "primary", "text_color": "#000000"},
+    {"color": "#28655a", "name": "Deep River Teal", "cat": "primary", "text_color": "#ffffff"},
+    {"color": "#76933c", "name": "Leaf Green", "cat": "primary", "text_color": "#000000"},
+    {"color": "#b0d7ed", "name": "Pale Moon Blue", "cat": "primary", "text_color": "#000000"},
+
+    {"color": "#ebebeb", "name": "Pearl Grey (suppressed)", "cat": "suppressed", "text_color": "#000000"},
+    {"color": "#a4a4a4", "name": "Deep Grey (suppressed)", "cat": "suppressed", "text_color": "#000000"},
+    {"color": "#e3e1d3", "name": "Threshold Greige", "cat": "null", "text_color": "#000000"},
+
+    {"color": "#e8f3c0", "name": "Lightest Yellow-Green", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#c8dd86", "name": "Pale Yellow-Green", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#abc465", "name": "Medium Yellow-Green", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#90ac4e", "name": "Yellow-Green", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#9ec371", "name": "Light Leaf Green", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#74a76f", "name": "Medium Green", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#468c6c", "name": "Medium Teal", "cat": "secondary", "text_color": "#ffffff"},
+
+    {"color": "#ede2ef", "name": "Lightest Pale Purple", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#dbc5e0", "name": "Light Pale Purple", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#ac94c6", "name": "Medium Pale Purple", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#c9a9d1", "name": "Pale Purple", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#f4e2f8", "name": "Lightest Purple", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#e9c5f1", "name": "Light Purple", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#b78dc1", "name": "Medium Purple", "cat": "secondary", "text_color": "#000000"},
+
+    {"color": "#b2a9d5", "name": "Lightest Pale Indigo", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#878dca", "name": "Pale Indigo", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#5673be", "name": "Medium Indigo", "cat": "secondary", "text_color": "#ffffff"},
+    {"color": "#b5b6da", "name": "Pale Blue-Purple", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#c2d6ed", "name": "Lightest Pale Blue-Purple", "cat": "secondary", "text_color": "#000000"},
+
+    {"color": "#e5f3fa", "name": "Lightest Pale Blue", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#dcf3ff", "name": "Light Pale Blue", "cat": "secondary", "text_color": "#000000"},
+    {"color": "#5e97d6", "name": "Medium Sky Blue", "cat": "secondary", "text_color": "#ffffff"}
+  ],
+
+  "palettes": {
+    "categorical": {
+      "8 Categorical": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#b0d7ed"],
+      "7 Categorical + Grey": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#ebebeb"],
+      "7 Categorical": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c"],
+      "6 Categorical + Grey": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#ebebeb"],
+      "6 Categorical": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a"],
+      "5 Categorical + Grey": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#ebebeb"],
+      "5 Categorical": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2"],
+      "4 Categorical + Grey": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#ebebeb"],
+      "4 Categorical": ["#62bcf0", "#c7e072", "#4c6dc1", "#28655a"],
+      "3 Categorical + Grey": ["#62bcf0", "#c7e072", "#4c6dc1", "#ebebeb"],
+      "3 Categorical": ["#62bcf0", "#c7e072", "#4c6dc1"]
+    },
+
+    "sequential": {
+      "5-Color Sequential (blue)": ["#e5f3fa", "#b0d7ed", "#62bcf0", "#5e97d6", "#5673be"],
+      "5-Color Sequential (yellow-green)": ["#e8f3c0", "#c8dd86", "#abc465", "#90ac4e", "#76933c"],
+      "5-Color Sequential (purple)": ["#ede2ef", "#dbc5e0", "#c9a9d1", "#b78dc1", "#a572b2"],
+      "5-Color Sequential (multi-hue blue-purple)": ["#dcf3ff", "#c2d6ed", "#b5b6da", "#ac94c6", "#a572b2"],
+      "5-Color Sequential (multi-hue green)": ["#e8f3c0", "#c7e072", "#9ec371", "#74a76f", "#468c6c"],
+      "5-Color Sequential (multi-hue purple-blue)": ["#ede2ef", "#dbc5e0", "#b2a9d5", "#878dca", "#5673be"]
+    },
+
+    "diverging": {
+      "7-Color Diverging (blue & yellow-green)": ["#5e97d6", "#62bcf0", "#b0d7ed", "#e3e1d3", "#e8f3c0", "#c7e072", "#76933c"],
+      "7-Color Diverging (green & purple)": ["#76933c", "#c7e072", "#e8f3c0", "#e3e1d3", "#f4e2f8", "#e9c5f1", "#a572b2"],
+      "6-Color Diverging (blue & yellow-green)": ["#5e97d6", "#62bcf0", "#b0d7ed", "#e8f3c0", "#c7e072", "#76933c"],
+      "6-Color Diverging (green & purple)": ["#76933c", "#c7e072", "#e8f3c0", "#f4e2f8", "#e9c5f1", "#a572b2"]
+    },
+
+    "dual": {
+      "2 Category (Blues)": ["#62bcf0", "#29326a"],
+      "2 Category (Purple Blue)": ["#a572b2", "#29326a"],
+      "Indigo Highlight": ["#4c6dc1", "#e3e1d3"],
+      "Purple Highlight": ["#a572b2", "#e3e1d3"]
+    },
+
+    "null_suppressed": {
+      "Supressed & Null Values": ["#ebebeb", "#a4a4a4", "#e3e1d3"]
+    }
+  },
+
+  "metadata": {
+    "description": "Complete color palette system with WCAG-optimized text colors",
+    "format_version": "1.0",
+    "color_categories": ["primary", "secondary", "suppressed", "null"],
+    "palette_categories": ["categorical", "sequential", "diverging", "dual", "null_suppressed"]
+  }
+}

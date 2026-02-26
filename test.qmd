@@ -1,7 +1,6 @@
 ---
 format: typst
 ---
-
 ```{=typst}
 
 // Color details with names and categories
@@ -98,27 +97,39 @@ format: typst
   "Supressed & Null Values": ("#ebebeb", "#a4a4a4", "#e3e1d3")
 )
 
-// Helper function to display a color swatch with info
-#let color-swatch(hex, size: 40pt, show-name: true, show-cat: false) = {
+// Helper function to display color swatch with text below, constrained to square width
+#let color-swatch-with-text(hex, square-size: 40pt) = {
   let info = get-color-info(hex)
-  let content = []
-  if show-name {
-    content = [#info.name]
-  } else {
-    content = [\#hex]
-  }
-  if show-cat {
-    content = [#content -- #info.cat]
-  }
   
   stack(
-    dir: ltr,
-    spacing: 6pt,
-    square(size: size, fill: rgb(hex)),
-    if show-name or show-cat { content }
+    dir: ttb,  // Changed from ltr to ttb for vertical stacking
+    spacing: 4pt,
+    // Square at specified size
+    square(size: square-size, fill: rgb(hex)),
+    // Text container constrained to same width
+    block(
+      width: square-size,
+      inset: (x: 0pt, y: 2pt),
+      text(
+        size: 7pt,
+        align(center, [
+          #info.name
+        ])
+      )
+    ),
+    // Hex code in gray, also constrained
+    block(
+      width: square-size,
+      text(
+        size: 6pt,
+        fill: gray,
+        align(center, [
+          #hex
+        ])
+      )
+    )
   )
 }
-
 
 // Display all palettes
 #heading(level: 2)[Categorical Palettes]
@@ -127,16 +138,11 @@ format: typst
   grid(
     columns: (auto,) * colors.len(),
     gutter: 8pt,
-    ..colors.map(hex => {
-      let info = get-color-info(hex)
-      stack(
-        square(size: 40pt, fill: rgb(hex)),
-        text(size: 7pt, [#info.name]),
-        text(size: 6pt, fill: gray, [#hex])
-      )
-    })
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 45pt))
   )
 }
+
+#pagebreak()
 
 #heading(level: 2)[Sequential Palettes]
 #for (name, colors) in sequential-palettes {
@@ -144,16 +150,11 @@ format: typst
   grid(
     columns: (auto,) * colors.len(),
     gutter: 8pt,
-    ..colors.map(hex => {
-      let info = get-color-info(hex)
-      stack(
-        square(size: 40pt, fill: rgb(hex)),
-        text(size: 7pt, [#info.name]),
-        text(size: 6pt, fill: gray, [#hex])
-      )
-    })
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 45pt))
   )
 }
+
+#pagebreak()
 
 #heading(level: 2)[Diverging Palettes]
 #for (name, colors) in diverging-palettes {
@@ -161,16 +162,11 @@ format: typst
   grid(
     columns: (auto,) * colors.len(),
     gutter: 8pt,
-    ..colors.map(hex => {
-      let info = get-color-info(hex)
-      stack(
-        square(size: 40pt, fill: rgb(hex)),
-        text(size: 7pt, [#info.name]),
-        text(size: 6pt, fill: gray, [#hex])
-      )
-    })
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 45pt))
   )
 }
+
+#pagebreak()
 
 #heading(level: 2)[Dual-Color Palettes]
 #for (name, colors) in dual-palettes {
@@ -178,14 +174,7 @@ format: typst
   grid(
     columns: (auto,) * colors.len(),
     gutter: 8pt,
-    ..colors.map(hex => {
-      let info = get-color-info(hex)
-      stack(
-        square(size: 40pt, fill: rgb(hex)),
-        text(size: 7pt, [#info.name]),
-        text(size: 6pt, fill: gray, [#hex])
-      )
-    })
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 45pt))
   )
 }
 
@@ -195,16 +184,8 @@ format: typst
   grid(
     columns: (auto,) * colors.len(),
     gutter: 8pt,
-    ..colors.map(hex => {
-      let info = get-color-info(hex)
-      stack(
-        square(size: 40pt, fill: rgb(hex)),
-        text(size: 7pt, [#info.name]),
-        text(size: 6pt, fill: gray, [#hex])
-      )
-    })
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 45pt))
   )
 }
-
 
 ```

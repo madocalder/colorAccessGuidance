@@ -18,7 +18,7 @@ format:
   typst:
     margin:
       x: 1in
-      y: 1.1in
+      y: 1in
     logo:
       width: .75in
       location: left-top
@@ -33,6 +33,15 @@ format:
     - text: PDF
       href: dataVizColorAccess.pdf
       icon: filetype-pdf
+    - text: JSON Color Palette Data
+      href: KY_vizColorPalettes.json
+      icon: filetype-json
+    - text: SCSS Color Palette Definitions
+      href: KY_vizColorPalettes.scss
+      icon: filetype-scss
+    - text: R Script Color Palette Definitions
+      href: KY_vizColorPalettes.R
+      icon: file-code
     comments:
       hypothesis: true
     grid:

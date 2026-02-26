@@ -1,0 +1,384 @@
+// _color-palette.scss
+// Complete Color Palette System
+// WCAG-optimized with text color recommendations
+
+// Color Categories
+$color-categories: (
+  "primary",
+  "secondary",
+  "suppressed",
+  "null"
+);
+
+// Individual Color Definitions with metadata
+$colors: (
+  // Primary Colors
+  "ky-sky-blue": (
+    hex: #62bcf0,
+    name: "KY Sky Blue",
+    category: "primary",
+    text-color: #000000
+  ),
+  "pale-milkweed": (
+    hex: #c7e072,
+    name: "Pale Milkweed Yellow-Green",
+    category: "primary",
+    text-color: #000000
+  ),
+  "wild-indigo": (
+    hex: #4c6dc1,
+    name: "Wild Indigo Blue",
+    category: "primary",
+    text-color: #ffffff
+  ),
+  "grosbeak-navy": (
+    hex: #29326a,
+    name: "Grosbeak Navy",
+    category: "primary",
+    text-color: #ffffff
+  ),
+  "coneflower-purple": (
+    hex: #a572b2,
+    name: "Coneflower Purple",
+    category: "primary",
+    text-color: #000000
+  ),
+  "deep-river-teal": (
+    hex: #28655a,
+    name: "Deep River Teal",
+    category: "primary",
+    text-color: #ffffff
+  ),
+  "leaf-green": (
+    hex: #76933c,
+    name: "Leaf Green",
+    category: "primary",
+    text-color: #000000
+  ),
+  "pale-moon-blue": (
+    hex: #b0d7ed,
+    name: "Pale Moon Blue",
+    category: "primary",
+    text-color: #000000
+  ),
+
+  // Suppressed & Null Colors
+  "pearl-grey": (
+    hex: #ebebeb,
+    name: "Pearl Grey (suppressed)",
+    category: "suppressed",
+    text-color: #000000
+  ),
+  "deep-grey": (
+    hex: #a4a4a4,
+    name: "Deep Grey (suppressed)",
+    category: "suppressed",
+    text-color: #000000
+  ),
+  "threshold-greige": (
+    hex: #e3e1d3,
+    name: "Threshold Greige",
+    category: "null",
+    text-color: #000000
+  ),
+
+  // Secondary - Yellow-Greens
+  "lightest-yellow-green": (
+    hex: #e8f3c0,
+    name: "Lightest Yellow-Green",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "pale-yellow-green": (
+    hex: #c8dd86,
+    name: "Pale Yellow-Green",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "medium-yellow-green": (
+    hex: #abc465,
+    name: "Medium Yellow-Green",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "yellow-green": (
+    hex: #90ac4e,
+    name: "Yellow-Green",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "light-leaf-green": (
+    hex: #9ec371,
+    name: "Light Leaf Green",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "medium-green": (
+    hex: #74a76f,
+    name: "Medium Green",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "medium-teal": (
+    hex: #468c6c,
+    name: "Medium Teal",
+    category: "secondary",
+    text-color: #ffffff
+  ),
+
+  // Secondary - Purples
+  "lightest-pale-purple": (
+    hex: #ede2ef,
+    name: "Lightest Pale Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "light-pale-purple": (
+    hex: #dbc5e0,
+    name: "Light Pale Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "medium-pale-purple": (
+    hex: #ac94c6,
+    name: "Medium Pale Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "pale-purple": (
+    hex: #c9a9d1,
+    name: "Pale Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "lightest-purple": (
+    hex: #f4e2f8,
+    name: "Lightest Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "light-purple": (
+    hex: #e9c5f1,
+    name: "Light Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "medium-purple": (
+    hex: #b78dc1,
+    name: "Medium Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+
+  // Secondary - Indigos & Blues
+  "lightest-pale-indigo": (
+    hex: #b2a9d5,
+    name: "Lightest Pale Indigo",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "pale-indigo": (
+    hex: #878dca,
+    name: "Pale Indigo",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "medium-indigo": (
+    hex: #5673be,
+    name: "Medium Indigo",
+    category: "secondary",
+    text-color: #ffffff
+  ),
+  "pale-blue-purple": (
+    hex: #b5b6da,
+    name: "Pale Blue-Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "lightest-pale-blue-purple": (
+    hex: #c2d6ed,
+    name: "Lightest Pale Blue-Purple",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "lightest-pale-blue": (
+    hex: #e5f3fa,
+    name: "Lightest Pale Blue",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "light-pale-blue": (
+    hex: #dcf3ff,
+    name: "Light Pale Blue",
+    category: "secondary",
+    text-color: #000000
+  ),
+  "medium-sky-blue": (
+    hex: #5e97d6,
+    name: "Medium Sky Blue",
+    category: "secondary",
+    text-color: #ffffff
+  )
+);
+
+// CSS Custom Properties (Variables)
+:root {
+  // Primary Colors
+  --ky-sky-blue: #{map-get(map-get($colors, "ky-sky-blue"), "hex")};
+  --pale-milkweed: #{map-get(map-get($colors, "pale-milkweed"), "hex")};
+  --wild-indigo: #{map-get(map-get($colors, "wild-indigo"), "hex")};
+  --grosbeak-navy: #{map-get(map-get($colors, "grosbeak-navy"), "hex")};
+  --coneflower-purple: #{map-get(map-get($colors, "coneflower-purple"), "hex")};
+  --deep-river-teal: #{map-get(map-get($colors, "deep-river-teal"), "hex")};
+  --leaf-green: #{map-get(map-get($colors, "leaf-green"), "hex")};
+  --pale-moon-blue: #{map-get(map-get($colors, "pale-moon-blue"), "hex")};
+
+  // Suppressed & Null
+  --pearl-grey: #{map-get(map-get($colors, "pearl-grey"), "hex")};
+  --deep-grey: #{map-get(map-get($colors, "deep-grey"), "hex")};
+  --threshold-greige: #{map-get(map-get($colors, "threshold-greige"), "hex")};
+
+  // Yellow-Greens
+  --lightest-yellow-green: #{map-get(map-get($colors, "lightest-yellow-green"), "hex")};
+  --pale-yellow-green: #{map-get(map-get($colors, "pale-yellow-green"), "hex")};
+  --medium-yellow-green: #{map-get(map-get($colors, "medium-yellow-green"), "hex")};
+  --yellow-green: #{map-get(map-get($colors, "yellow-green"), "hex")};
+  --light-leaf-green: #{map-get(map-get($colors, "light-leaf-green"), "hex")};
+  --medium-green: #{map-get(map-get($colors, "medium-green"), "hex")};
+  --medium-teal: #{map-get(map-get($colors, "medium-teal"), "hex")};
+
+  // Purples
+  --lightest-pale-purple: #{map-get(map-get($colors, "lightest-pale-purple"), "hex")};
+  --light-pale-purple: #{map-get(map-get($colors, "light-pale-purple"), "hex")};
+  --medium-pale-purple: #{map-get(map-get($colors, "medium-pale-purple"), "hex")};
+  --pale-purple: #{map-get(map-get($colors, "pale-purple"), "hex")};
+  --lightest-purple: #{map-get(map-get($colors, "lightest-purple"), "hex")};
+  --light-purple: #{map-get(map-get($colors, "light-purple"), "hex")};
+  --medium-purple: #{map-get(map-get($colors, "medium-purple"), "hex")};
+
+  // Indigos & Blues
+  --lightest-pale-indigo: #{map-get(map-get($colors, "lightest-pale-indigo"), "hex")};
+  --pale-indigo: #{map-get(map-get($colors, "pale-indigo"), "hex")};
+  --medium-indigo: #{map-get(map-get($colors, "medium-indigo"), "hex")};
+  --pale-blue-purple: #{map-get(map-get($colors, "pale-blue-purple"), "hex")};
+  --lightest-pale-blue-purple: #{map-get(map-get($colors, "lightest-pale-blue-purple"), "hex")};
+  --lightest-pale-blue: #{map-get(map-get($colors, "lightest-pale-blue"), "hex")};
+  --light-pale-blue: #{map-get(map-get($colors, "light-pale-blue"), "hex")};
+  --medium-sky-blue: #{map-get(map-get($colors, "medium-sky-blue"), "hex")};
+}
+
+// Palette Definitions
+$categorical-palettes: (
+  "8-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #76933c, #b0d7ed),
+  "7-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #76933c, #ebebeb),
+  "7-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #76933c),
+  "6-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #ebebeb),
+  "6-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a),
+  "5-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #ebebeb),
+  "5-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2),
+  "4-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #ebebeb),
+  "4-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a),
+  "3-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #ebebeb),
+  "3-categorical": (#62bcf0, #c7e072, #4c6dc1)
+);
+
+$sequential-palettes: (
+  "5-blue": (#e5f3fa, #b0d7ed, #62bcf0, #5e97d6, #5673be),
+  "5-yellow-green": (#e8f3c0, #c8dd86, #abc465, #90ac4e, #76933c),
+  "5-purple": (#ede2ef, #dbc5e0, #c9a9d1, #b78dc1, #a572b2),
+  "5-multi-blue-purple": (#dcf3ff, #c2d6ed, #b5b6da, #ac94c6, #a572b2),
+  "5-multi-green": (#e8f3c0, #c7e072, #9ec371, #74a76f, #468c6c),
+  "5-multi-purple-blue": (#ede2ef, #dbc5e0, #b2a9d5, #878dca, #5673be)
+);
+
+$diverging-palettes: (
+  "7-blue-yellow-green": (#5e97d6, #62bcf0, #b0d7ed, #e3e1d3, #e8f3c0, #c7e072, #76933c),
+  "7-green-purple": (#76933c, #c7e072, #e8f3c0, #e3e1d3, #f4e2f8, #e9c5f1, #a572b2),
+  "6-blue-yellow-green": (#5e97d6, #62bcf0, #b0d7ed, #e8f3c0, #c7e072, #76933c),
+  "6-green-purple": (#76933c, #c7e072, #e8f3c0, #f4e2f8, #e9c5f1, #a572b2)
+);
+
+$dual-palettes: (
+  "blues": (#62bcf0, #29326a),
+  "purple-blue": (#a572b2, #29326a),
+  "indigo-highlight": (#4c6dc1, #e3e1d3),
+  "purple-highlight": (#a572b2, #e3e1d3)
+);
+
+$null-suppressed-palettes: (
+  "null-suppressed": (#ebebeb, #a4a4a4, #e3e1d3)
+);
+
+// Helper function to get color by key
+@function color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get(map-get($colors, $key), "hex");
+  }
+  @warn "Unknown color key: #{$key}";
+  @return null;
+}
+
+// Helper function to get text color for a color key
+@function text-color($key) {
+  @if map-has-key($colors, $key) {
+    @return map-get(map-get($colors, $key), "text-color");
+  }
+  @warn "Unknown color key: #{$key}";
+  @return #000000;
+}
+
+// Helper function to get palette
+@function palette($type, $name) {
+  $palettes: (
+    "categorical": $categorical-palettes,
+    "sequential": $sequential-palettes,
+    "diverging": $diverging-palettes,
+    "dual": $dual-palettes,
+    "null": $null-suppressed-palettes
+  );
+
+  $palette-map: map-get($palettes, $type);
+  @if map-has-key($palette-map, $name) {
+    @return map-get($palette-map, $name);
+  }
+  @warn "Unknown palette: #{$type} - #{$name}";
+  @return null;
+}
+
+// Example usage classes
+.color-swatch {
+  display: inline-block;
+  width: 100px;
+  padding: 8px;
+  margin: 4px;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+// Generate swatch classes for each color
+@each $key, $color in $colors {
+  .swatch-#{$key} {
+    background-color: map-get($color, "hex");
+    color: map-get($color, "text-color");
+    @extend .color-swatch;
+
+    &::after {
+      content: "#{map-get($color, "name")} \A #{map-get($color, "hex")}";
+      white-space: pre;
+    }
+  }
+}
+
+// Mixin for WCAG-compliant text color
+@mixin wcag-text-color($bg-color) {
+  @if type-of($bg-color) == color {
+    $luminance: luminance($bg-color); // You'd need a luminance function
+    // Simplified - in practice you'd use a proper contrast calculator
+    @if $luminance > 0.5 {
+      color: #000000;
+    } @else {
+      color: #ffffff;
+    }
+  }
+}
