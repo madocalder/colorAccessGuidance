@@ -216,7 +216,7 @@ dualColorPalettes <- list(
 
 nullSuppressedColors <- list(
   
-  "Supressed & Null Values" = c("#ebebeb", "#a4a4a4",  "#e3e1d3")
+  "Suppressed & Null Values" = c("#ebebeb", "#a4a4a4",  "#e3e1d3")
 )
 
 ```
@@ -622,7 +622,7 @@ htmltools::browsable(pattern_chart)
 
 :::
 
-::: {.content-visible when-format="typst"}
+::: {.content-visible unless-format="html"}
 
 {{< pagebreak >}}
 
@@ -719,24 +719,27 @@ htmltools::browsable(pattern_chart)
 )
 
 #let null-palettes = (
-  "Supressed & Null Values": ("#ebebeb", "#a4a4a4", "#e3e1d3")
+  "Suppressed & Null Values": ("#ebebeb", "#a4a4a4", "#e3e1d3")
 )
 
 // Helper function to display color swatch with text below, constrained to square width
-#let color-swatch-with-text(hex, square-size: 40pt) = {
+#let color-swatch-with-text(hex, square-size: 40pt, square-text: 45pt) = {
   let info = get-color-info(hex)
+  
+
   
   stack(
     dir: ttb,  // Changed from ltr to ttb for vertical stacking
-    spacing: 4pt,
+    spacing: 3pt,
     // Square at specified size
     square(size: square-size, fill: rgb(hex)),
     // Text container constrained to same width
     block(
-      width: square-size,
-      inset: (x: 0pt, y: 2pt),
+      width: square-text,
       text(
-        size: 8pt,
+        size: 9pt,
+        weight: "light",
+        hyphenate: false,
         align(left, [
           #info.name
         ])
@@ -744,26 +747,38 @@ htmltools::browsable(pattern_chart)
     ),
     // Hex code in gray, also constrained
     block(
-      width: square-size,
+      width: square-text,
       text(
-        size: 7pt,
+        size: 8pt,
+        weight: "bold",
+        hyphenate: false,
         fill: black,
-        align(center, [
+        align(left, [
           #hex
         ])
       )
     )
   )
+  
+  
 }
 
+#set par(
+  leading: 0.45em,
+  spacing: 0.5em,
+  justify: false,
+)
+  
+  
 // Display all palettes
 #heading(level: 2)[Categorical Palettes]
 #for (name, colors) in categorical-palettes {
   heading(level: 3)[#name]
   grid(
     columns: (auto,) * colors.len(),
-    gutter: 8pt,
-    ..colors.map(hex => color-swatch-with-text(hex, square-size: 50pt))
+    column-gutter: 15pt,
+    row-gutter: 0pt,
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 55pt, square-text: 62pt))
   )
 }
 
@@ -774,8 +789,9 @@ htmltools::browsable(pattern_chart)
   heading(level: 3)[#name]
   grid(
     columns: (auto,) * colors.len(),
-    gutter: 8pt,
-    ..colors.map(hex => color-swatch-with-text(hex, square-size: 50pt))
+    column-gutter: 15pt,
+    row-gutter: 0pt,
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 55pt, square-text: 62pt))
   )
 }
 
@@ -786,8 +802,9 @@ htmltools::browsable(pattern_chart)
   heading(level: 3)[#name]
   grid(
     columns: (auto,) * colors.len(),
-    gutter: 8pt,
-    ..colors.map(hex => color-swatch-with-text(hex, square-size: 50pt))
+    column-gutter: 15pt,
+    row-gutter: 0pt,
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 55pt, square-text: 62pt))
   )
 }
 
@@ -798,8 +815,9 @@ htmltools::browsable(pattern_chart)
   heading(level: 3)[#name]
   grid(
     columns: (auto,) * colors.len(),
-    gutter: 8pt,
-    ..colors.map(hex => color-swatch-with-text(hex, square-size: 50pt))
+    column-gutter: 15pt,
+    row-gutter: 0pt,
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 55pt, square-text: 62pt))
   )
 }
 
@@ -808,8 +826,9 @@ htmltools::browsable(pattern_chart)
   heading(level: 3)[#name]
   grid(
     columns: (auto,) * colors.len(),
-    gutter: 8pt,
-    ..colors.map(hex => color-swatch-with-text(hex, square-size: 50pt))
+    column-gutter: 15pt,
+    row-gutter: 0pt,
+    ..colors.map(hex => color-swatch-with-text(hex, square-size: 55pt, square-text: 62pt))
   )
 }
 

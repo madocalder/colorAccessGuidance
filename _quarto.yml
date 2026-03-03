@@ -1,7 +1,7 @@
 editor: visual
 lang: en
-version: 1.0.0
-status: Round 2 Color Palette Revisions
+version: 1.0.1
+status: Updated to include docx format
 author:
   name: Madoc Alder Marshall
   affiliation:
@@ -21,19 +21,23 @@ callout-appearance: simple
 format:
   typst:
     margin:
-      x: 1in
-      y: 1in
+      x: .65in
+      y: .5in
     logo:
-      width: .75in
-      location: left-top
-      padding-top: .2in
-      padding-left: .2in
+      width: .5in
+      location: right-top
+      padding-right: 0.2in
+      padding-top: 0.2in
+      alt: astho
   html:
     template-partials:
       - title-metadata.html
       - title-block.html
     page-layout: full
     other-links:
+    - text: Word Doc
+      href: dataVizColorAccess.docx
+      icon: filetype-docx
     - text: PDF
       href: dataVizColorAccess.pdf
       icon: filetype-pdf
@@ -49,15 +53,15 @@ format:
     comments:
       hypothesis: true
     grid:
-      sidebar-width: 35%
+      sidebar-width: 38%
     theme: [brand, baselineStyles.scss, accessStyles.scss]
     embed-resources: true
     self-contained: true
     toc: true
-    toc-expand: 2
-    toc-location: left
+    toc-location: right
     toc-title: Table of Contents
-    toc-depth: 4
+    toc-depth: 5
+    toc-expand: 1
     number-sections: false
     smooth-scroll: true
     title-block-banner: true

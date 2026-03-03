@@ -94,7 +94,7 @@ format: typst
 )
 
 #let null-palettes = (
-  "Supressed & Null Values": ("#ebebeb", "#a4a4a4", "#e3e1d3")
+  "Suppressed & Null Values": ("#ebebeb", "#a4a4a4", "#e3e1d3")
 )
 
 // Helper function to display color swatch with text below, constrained to square width

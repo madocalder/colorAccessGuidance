@@ -1,3 +1,5 @@
+{{< pagebreak >}}
+
 ## Practical Guide to Developing Accessible Color Systems for Data Viz
 
 ### Core Principles {.part}
@@ -13,16 +15,15 @@ Before building a palette, it's crucial to understand the core principles that m
 ::: {.callout-tip collapse="false"}
 ## For more on the science behind color perception, see [Colorimetry: The Science of Quantifying Color](#sec-Colorimetry)
 
-  * Read more about [why HSL fails accessible color systems](#sec-HSL)
-  * Discover the [benefits of using CIELAB for color system development](#sec-CIELAB)
-  
+-   Read more about [why HSL fails accessible color systems](#sec-HSL)
+-   Discover the [benefits of using CIELAB for color system development](#sec-CIELAB)
 :::
 
 #### 2. How CVD Impacts Data Interpretation
 
 If color is the *only* way to convey information, your visualization will fail for users with Color Vision Deficiency (CVD).
 
-::: {.callout-tip}
+::: callout-tip
 ## Read more about [the diversity of human vision experiences, including the different types of CVD](#sec-colorVisionDiversity).
 :::
 
@@ -43,22 +44,21 @@ Choose your palette based on the story your data tells:
 #### 4. Applying Modern Contrast Standards (WCAG & APCA)
 
 -   **WCAG 2.1:** The current legal baseline. It provides a simple ratio (e.g., 4.5:1 for text) but is flawed, especially for dark backgrounds and colored text.
--   **APCA (The Future):** A context-aware model that considers font weight, size, and spatial properties. It more accurately predicts actual readability and is essential for modern interfaces like dark mode. 
+-   **APCA (The Future):** A context-aware model that considers font weight, size, and spatial properties. It more accurately predicts actual readability and is essential for modern interfaces like dark mode.
 
 ::: {.callout-tip collapse="true"}
 ## Read more about [color and digital accessibility](#sec-partThree)
 
-  * Explore the [WCAG contrast guidelines](#sec-WCAG)
-  * Check out the [APCA contrast guidelines](#sec-APCA)
-  
+-   Explore the [WCAG contrast guidelines](#sec-WCAG)
+-   Check out the [APCA contrast guidelines](#sec-APCA)
 :::
 
 #### 5. Strategic Use of Color for Pre-attentive Processing
 
-  * Use high-contrast, saturated colors to make the most important data points "pop" and guide the viewer's attention instantly.
-  * Use more muted colors with lower (but still accessible) contrast for context and background elements. This creates lower cognitive load via visual hierarchy without relying solely on legends.
+-   Use high-contrast, saturated colors to make the most important data points "pop" and guide the viewer's attention instantly.
+-   Use more muted colors with lower (but still accessible) contrast for context and background elements. This creates lower cognitive load via visual hierarchy without relying solely on legends.
 
-::: {.callout-tip}
+::: callout-tip
 ## Read more about [color and pre-attentive responses](#sec-Psychology)
 :::
 
@@ -70,44 +70,46 @@ Follow this step-by-step workflow to build a system that is both beautiful and i
 
 ##### Step 1: Audit Your Data & Chart Types
 
-  * List the types of visualizations you commonly use (bar charts, line graphs, heat maps, etc.).
-  * Identify the types of data you display:
-    + How many categories do you typically have?
-    + Do you often show "positive/negative" or "deviation from a goal"?
-    + Do you often need to guide your audience to a specific value?\
-    + This tells you whether you need Qualitative, Sequential, and/or Diverging palettes, as well as if you need any highlight/focus palettes. 
-    
-::: {.callout-tip}
+-   List the types of visualizations you commonly use (bar charts, line graphs, heat maps, etc.).
+-   Identify the types of data you display:
+    -   How many categories do you typically have?
+    -   Do you often show "positive/negative" or "deviation from a goal"?
+    -   Do you often need to guide your audience to a specific value?\
+    -   This tells you whether you need Qualitative, Sequential, and/or Diverging palettes, as well as if you need any highlight/focus palettes.
+
+::: callout-tip
 ## Reference [The Four Types of Data Palettes](#sec-paletteTypes) for more information.
 :::
 
 ##### Step 2: Define Palette Requirements
 
-  * **Categorical Needs:** "We need a qualitative palette with at least 6 distinguishable colors."
-  * **Sequential Needs:** "We need a sequential palette for metrics from 0-100%."
-  * **Diverging Needs:** "We need a diverging palette to show performance above/below a target."
-  * **Highlight Needs:** "We need a focusing color palette to highlight the top performance category."
-  * **Brand Constraints:** Identify any non-negotiable brand colors that must be incorporated, and any colors that must be avoided.
+-   **Categorical Needs:** "We need a qualitative palette with at least 6 distinguishable colors."
+-   **Sequential Needs:** "We need a sequential palette for metrics from 0-100%."
+-   **Diverging Needs:** "We need a diverging palette to show performance above/below a target."
+-   **Highlight Needs:** "We need a focusing color palette to highlight the top performance category."
+-   **Brand Constraints:** Identify any non-negotiable brand colors that must be incorporated, and any colors that must be avoided.
 
 #### Phase 2: Palette Creation in a Perceptual Space {.phase}
 
 ##### Step 3: Choose a Perceptual Color Space
 
-  * **Tooling:** Use a tool that works in **LCh** or **CIELAB**, such as the [Accessible Palette web app](https://accessiblepalette.com/) (which is based on the javascript library [Chroma.js](https://gka.github.io/chroma.js/)).
-  * **Action:** Do not start in HSL. Build your palette in a perceptual space from the beginning.
+-   **Tooling:** Use a tool that works in **LCh** or **CIELAB**, such as the [Accessible Palette web app](https://accessiblepalette.com/) (which is based on the javascript library [Chroma.js](https://gka.github.io/chroma.js/)).
+-   **Action:** Do not start in HSL. Build your palette in a perceptual space from the beginning.
 
 ##### Step 4: Build the Qualitative Palette First
 
 1.  Select your first hue (often a brand color).
+
 2.  Choose a Lightness (L) and Chroma (C) value that feels balanced.
+
 3.  To generate the next color, move significantly in Hue (e.g., 60-90 degrees) while keeping Lightness and Chroma nearly constant.
+
 4.  Repeat, ensuring all colors have a similar perceived "weight" on the page.
+
 5.  **The Grayscale Test:** Convert your palette to grayscale (or use a tool like [Susie Lu's Viz Palette Web App](https://projects.susielu.com/viz-palette)) If the colors become muddled and hard to distinguish, adjust their Lightness values until they are clearly different even without color.
-    
-    :::{.callout-important}
-    
+
+    ::: callout-important
     Once you get to palettes with more than 6 colors, passing the grayscale test will no longer be possible. This is one example of why even with optimized color palettes, you must avoid communicating any information with color alone.
-    
     :::
 
 ##### Step 5: Build Sequential & Diverging Palettes
@@ -119,40 +121,40 @@ Follow this step-by-step workflow to build a system that is both beautiful and i
 
 ##### Step 6: Contrast Checking
 
-  * Use a tool like the [Accessible Palette web app](https://accessiblepalette.com/) or the [APCA Contrast Calculator](https://apcacontrast.com/) to check that the contrast meets legal compliance requirements ([WCAG compliance standards](#sec-WCAG)), as well as [APCA contrast requirements](#sec-APCA).
-    + **For visual data objects:** If you test the colors against white or black backgrounds, you will need to ensure all viz objects in those colors have an outline in the respective color to ensure it maintains contrast standards.
-    + **For Text/Labels:** Ensure that both text-on-background and data-label-on-color pairs meet the thresholds for readability.
-    + **Key Check:** Verify contrast for both light and dark mode backgrounds.
+-   Use a tool like the [Accessible Palette web app](https://accessiblepalette.com/) or the [APCA Contrast Calculator](https://apcacontrast.com/) to check that the contrast meets legal compliance requirements ([WCAG compliance standards](#sec-WCAG)), as well as [APCA contrast requirements](#sec-APCA).
+    -   **For visual data objects:** If you test the colors against white or black backgrounds, you will need to ensure all viz objects in those colors have an outline in the respective color to ensure it maintains contrast standards.
+    -   **For Text/Labels:** Ensure that both text-on-background and data-label-on-color pairs meet the thresholds for readability.
+    -   **Key Check:** Verify contrast for both light and dark mode backgrounds.
 
 ##### Step 7: CVD Simulation Testing
 
-  * **Tooling:** Use a tool like [Susie Lu's Viz Palette Web App](https://projects.susielu.com/viz-palette), [Coblis Color Blindness Simulator](https://www.color-blindness.com/coblis-color-blindness-simulator/), or the simulator in your browser's developer tools.
-  * **Action:** Apply the CVD filters to your entire screen and look at your example charts.
-  * **Ask:** Can I still distinguish all data series? Does the meaning of the sequential/diverging scale remain clear? If not, go back to Step 4 and adjust Lightness and Chroma.
+-   **Tooling:** Use a tool like [Susie Lu's Viz Palette Web App](https://projects.susielu.com/viz-palette), [Coblis Color Blindness Simulator](https://www.color-blindness.com/coblis-color-blindness-simulator/), or the simulator in your browser's developer tools.
+-   **Action:** Apply the CVD filters to your entire screen and look at your example charts.
+-   **Ask:** Can I still distinguish all data series? Does the meaning of the sequential/diverging scale remain clear? If not, go back to Step 4 and adjust Lightness and Chroma.
 
 ##### Step 8: Implement Non-Color Redundancy
 
 This is a critical step that makes your visualizations *truly* robust.
 
-  * **Direct Labeling:** Plan to place text labels directly on data points instead of relying on a color legend.
-  * **Patterns & Textures:** For filled areas (like stacked bars), have a library of patterns (stripes, dots) to pair with colors.
-  * **Shapes:** In scatter plots, assign a unique shape (circle, square, triangle) to each category in addition to color.
+-   **Direct Labeling:** Plan to place text labels directly on data points instead of relying on a color legend.
+-   **Patterns & Textures:** For filled areas (like stacked bars), have a library of patterns (stripes, dots) to pair with colors.
+-   **Shapes:** In scatter plots, assign a unique shape (circle, square, triangle) to each category in addition to color.
 
 #### Phase 4: Tooling, Documentation & Integration {.phase}
 
 ##### Step 9: Codify and Document
 
-  * Create a central document (a "style guide") that displays all approved palettes with their HEX/RGB values. For each palette, include: 
-    + **Use Case:** "Qualitative Palette A - for general categorical data."
-    + **Accessibility Notes:** "Tested for Deuteranopia and Tritanopia. Passes grayscale test."
-    + **Contrast Ratings:** "Do not use #ABC123 for text smaller than 16px."
+-   Create a central document (a "style guide") that displays all approved palettes with their HEX/RGB values. For each palette, include:
+    -   **Use Case:** "Qualitative Palette A - for general categorical data."
+    -   **Accessibility Notes:** "Tested for Deuteranopia and Tritanopia. Passes grayscale test."
+    -   **Contrast Ratings:** "Do not use #ABC123 for text smaller than 16px."
 
 ##### Step 10: Integrate into Workflow & Tools
 
-  * **Design Tools:** Add the palettes to your Figma, Sketch, or other relevant libraries.
-  * **Code:** Export the colors as CSS variables (e.g., `--color-data-category-1: #123abc;`) and/or into a design token system.
-  * **Templates:** Create chart templates in your data viz tool softwares (like Excel or Tableau) that use the accessible palettes by default.
+-   **Design Tools:** Add the palettes to your Figma, Sketch, or other relevant libraries.
+-   **Code:** Export the colors as CSS variables (e.g., `--color-data-category-1: #123abc;`) and/or into a design token system.
+-   **Templates:** Create chart templates in your data viz tool softwares (like Excel or Tableau) that use the accessible palettes by default.
 
 By following this process, you move from ad-hoc, potentially problematic color choices to a systematic, reliable, and inclusive color system that ensures your data's story is clear to everyone.
 
-------------------------------------------------------------------------
+

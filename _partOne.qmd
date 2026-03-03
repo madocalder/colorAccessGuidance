@@ -1,5 +1,4 @@
-
-### Part 1: The Science of Color and Human Perception {.part #sec-partOne}
+### Part 1: The Science of Color and Human Perception {#sec-partOne .part}
 
 #### What is Color, Really? {#sec-whatIsColor}
 
@@ -60,21 +59,49 @@ Different color spaces are made for different purposes:
 :::
 :::::
 
-The associated graphic is a map of human color vision. The full, kidney-shaped area shows every color a typical human eye can see based on the CIE color space.
+The associated graphic is a map of human color vision. The full, kidney-shaped area shows every color a typical human eye can see based on the CIE color space. 
 
-![.](images/CIE1931xy_gamut_comparison.svg){#colorspace fig-alt="Graph displaying the range of typical human color vision with shapes overlaid showing the colors that can be represented in sRGB and CMYK color spaces."}
+The **triangle** inside shows the range of colors a standard computer monitor can display (sRGB). This is an example of **additive** color mixing, where adding one set of wavelengths to another to create a new color.
+
+The **pentagon shape** shows the range of colors available via CMYK printing, which is a form of **subtractive** color mixing. Instead of adding light, it creates color by *removing* or *absorbing* certain wavelengths of light. Think about mixing paints or inks. Each paint absorbs specific colors of light and when you mix two paints, they absorb more light together. You only see the color that *both* paints reflect back. In other words, mixing subtracts or "deletes" wavelengths of light before they reach your eye.
+
+::: {.content-visible when-format="html"}
+![Human color vision](images/CIE1931xy_gamut_comparison.svg){#colorspace fig-alt="Graph displaying the range of typical human color vision with shapes overlaid showing the colors that can be represented in sRGB and CMYK color spaces."}
+:::
+
+::: {.content-visible when-format="typst"}
+![Human color vision](images/CIE1931xy_gamut_comparison.png){#colorspace fig-alt="Graph displaying the range of typical human color vision with shapes overlaid showing the colors that can be represented in sRGB and CMYK color spaces."}
+:::
 
 ::::: columns
 ::: column
-![](images/colors_additive.svg){#additive fig-alt="Three circles (one blue, one green, and one red) on a black background overlap as if a venn diagram where 2 circles overlap to make cyan, yellow, and magenta, and then shows white where all three overlap."}
 
-The **triangle** inside shows the range of colors a standard computer monitor can display (sRGB). This is an example of **additive** color mixing, where adding one set of wavelengths to another to create a new color.
+::: {.content-visible when-format="html"}
+![Additive](images/colors_additive.svg){#additive fig-alt="Three circles (one blue, one green, and one red) on a black background overlap as if a venn diagram where 2 circles overlap to make cyan, yellow, and magenta, and then shows white where all three overlap."}
+:::
+
+::: {.content-visible when-format="typst"}
+![Additive](images/colors_additive.png){#additive fig-alt="Three circles (one blue, one green, and one red) on a black background overlap as if a venn diagram where 2 circles overlap to make cyan, yellow, and magenta, and then shows white where all three overlap."}
+:::
+
+
+
+
 :::
 
 ::: column
-![](images/colors_subtractive.svg){#subtractive fig-alt="Three circles (one cyan, one magenta, and one yellow) on a white background overlap as if a venn diagram where 2 circles overlap to make red, green, and blue, and then shows black where all three overlap."}
 
-The **pentagon shaped** shows the range of colors available via CMYK printing, which is a form of **subtractive** color mixing. Instead of adding light, it creates color by *removing* or *absorbing* certain wavelengths of light. Think about mixing paints or inks. Each paint absorbs specific colors of light and when you mix two paints, they absorb more light together. You only see the color that *both* paints reflect back. In other words, mixing subtracts or "deletes" wavelengths of light before they reach your eye.
+::: {.content-visible when-format="html"}
+![Subtractive](images/colors_subtractive.svg){#subtractive fig-alt="Three circles (one cyan, one magenta, and one yellow) on a white background overlap as if a venn diagram where 2 circles overlap to make red, green, and blue, and then shows black where all three overlap."}
+:::
+
+::: {.content-visible when-format="typst"}
+![Subtractive](images/colors_subtractive.png){#subtractive fig-alt="Three circles (one cyan, one magenta, and one yellow) on a white background overlap as if a venn diagram where 2 circles overlap to make red, green, and blue, and then shows black where all three overlap."}
+:::
+
+
+
+
 :::
 :::::
 
@@ -90,6 +117,6 @@ For accessible data visualization, we recommend using CIELAB and its cylindrical
 
 Key advantages of CIELAB/LCh:
 
-- Predictable Contrast: Colors with the same L* value have the same perceived brightness, making contrast calculations reliable
-- Accessible-by-Design: Built-in perceptual uniformity means your palettes will be more accessible from the start
-- Consistent Visual Weight: Your qualitative palettes will have colors that feel equally "heavy" on the page
+-   Predictable Contrast: Colors with the same L\* value have the same perceived brightness, making contrast calculations reliable
+-   Accessible-by-Design: Built-in perceptual uniformity means your palettes will be more accessible from the start
+-   Consistent Visual Weight: Your qualitative palettes will have colors that feel equally "heavy" on the page
