@@ -17,7 +17,7 @@ color_details <- tibble::tribble(
   "#62bcf0", "KY Sky Blue", "primary", "#000000",
   "#c7e072", "Pale Milkweed Yellow-Green", "primary", "#000000",
   "#4c6dc1", "Wild Indigo Blue", "primary", "#ffffff",
-  "#29326a", "Grosbeak Navy", "primary", "#ffffff",
+  "#012a5c", "Grosbeak Navy", "primary", "#ffffff",
   "#a572b2", "Coneflower Purple", "primary", "#000000",
   "#28655a", "Deep River Teal", "primary", "#ffffff",
   "#76933c", "Leaf Green", "primary", "#000000",
@@ -73,11 +73,11 @@ color_lookup <- function(hex) {
 
 # Categorical Palettes
 categorical_palettes <- list(
-  "8 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#b0d7ed"),
-  "7 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#ebebeb"),
-  "7 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c"),
-  "6 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#ebebeb"),
-  "6 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a"),
+  "8 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#76933c", "#b0d7ed"),
+  "7 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#76933c", "#ebebeb"),
+  "7 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#76933c"),
+  "6 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#ebebeb"),
+  "6 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c"),
   "5 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#ebebeb"),
   "5 Categorical" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2"),
   "4 Categorical + Grey" = c("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#ebebeb"),
@@ -106,8 +106,8 @@ diverging_palettes <- list(
 
 # Dual-Color Palettes
 dual_palettes <- list(
-  "2 Category (Blues)" = c("#62bcf0", "#29326a"),
-  "2 Category (Purple Blue)" = c("#a572b2", "#29326a"),
+  "2 Category (Blues)" = c("#62bcf0", "#012a5c"),
+  "2 Category (Purple Blue)" = c("#a572b2", "#012a5c"),
   "Indigo Highlight" = c("#4c6dc1", "#e3e1d3"),
   "Purple Highlight" = c("#a572b2", "#e3e1d3")
 )

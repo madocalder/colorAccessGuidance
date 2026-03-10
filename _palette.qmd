@@ -97,7 +97,7 @@ color_details <- list(
   list(color = "#62bcf0", name = "KY Sky Blue", cat = "primary"), # fav
   list(color = "#c7e072", name = "Pale Milkweed Yellow-Green", cat = "primary"),
   list(color = "#4c6dc1", name = "Wild Indigo Blue", cat = "primary"), # fav
-  list(color = "#29326a", name = "Grosbeak Navy", cat = "primary"),
+  list(color = "#012a5c", name = "Grosbeak Navy", cat = "primary"),
   list(color = "#a572b2", name = "Coneflower Purple", cat = "primary"), # fav
   list(color = "#28655a", name = "Deep River Teal", cat = "primary"), # fav
   list(color = "#76933c", name = "Leaf Green", cat = "primary"),
@@ -144,20 +144,20 @@ for (item in color_details) {
 
 # Define your palettes
 categoricalPalettes <- list(
-  "8 Categorical" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#29326a", "#76933c", "#b0d7ed"),
+  "8 Categorical" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#012a5c", "#76933c", "#b0d7ed"),
   
   
   
-  "7 Categorical + Grey" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#29326a", "#76933c", "#ebebeb"),
+  "7 Categorical + Grey" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#012a5c", "#76933c", "#ebebeb"),
   
   
-  "7 Categorical" =       c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#29326a", "#76933c"),
+  "7 Categorical" =       c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#012a5c", "#76933c"),
   
   
   
-  "6 Categorical + Grey" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#29326a", "#ebebeb"),
+  "6 Categorical + Grey" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#012a5c", "#ebebeb"),
   
-  "6 Categorical" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#29326a"),
+  "6 Categorical" = c("#62bcf0", "#c7e072","#4c6dc1", "#28655a", "#a572b2",  "#012a5c"),
   
   
   
@@ -206,8 +206,8 @@ sequentialDivergingPalettes <- list(
 )
 
 dualColorPalettes <- list(
-  "2 Category (Blues)" = c("#62bcf0", "#29326a"),
-  "2 Category (Purple Blue)" = c("#a572b2", "#29326a"),
+  "2 Category (Blues)" = c("#62bcf0", "#012a5c"),
+  "2 Category (Purple Blue)" = c("#a572b2", "#012a5c"),
   
   
   "Indigo Highlight" = c("#4c6dc1", "#e3e1d3"),
@@ -633,7 +633,7 @@ htmltools::browsable(pattern_chart)
   (color: "#62bcf0", name: "KY Sky Blue", cat: "primary"),
   (color: "#c7e072", name: "Pale Milkweed Yellow-Green", cat: "primary"),
   (color: "#4c6dc1", name: "Wild Indigo Blue", cat: "primary"),
-  (color: "#29326a", name: "Grosbeak Navy", cat: "primary"),
+  (color: "#012a5c", name: "Grosbeak Navy", cat: "primary"),
   (color: "#a572b2", name: "Coneflower Purple", cat: "primary"),
   (color: "#28655a", name: "Deep River Teal", cat: "primary"),
   (color: "#76933c", name: "Leaf Green", cat: "primary"),
@@ -682,11 +682,11 @@ htmltools::browsable(pattern_chart)
 
 // Define your palettes
 #let categorical-palettes = (
-  "8 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#b0d7ed"),
-  "7 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c", "#ebebeb"),
-  "7 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#76933c"),
-  "6 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a", "#ebebeb"),
-  "6 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#29326a"),
+  "8 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#76933c", "#b0d7ed"),
+  "7 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#76933c", "#ebebeb"),
+  "7 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#76933c"),
+  "6 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c", "#ebebeb"),
+  "6 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#012a5c"),
   "5 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2", "#ebebeb"),
   "5 Categorical": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#a572b2"),
   "4 Categorical + Grey": ("#62bcf0", "#c7e072", "#4c6dc1", "#28655a", "#ebebeb"),
@@ -712,8 +712,8 @@ htmltools::browsable(pattern_chart)
 )
 
 #let dual-palettes = (
-  "2 Category (Blues)": ("#62bcf0", "#29326a"),
-  "2 Category (Purple Blue)": ("#a572b2", "#29326a"),
+  "2 Category (Blues)": ("#62bcf0", "#012a5c"),
+  "2 Category (Purple Blue)": ("#a572b2", "#012a5c"),
   "Indigo Highlight": ("#4c6dc1", "#e3e1d3"),
   "Purple Highlight": ("#a572b2", "#e3e1d3")
 )

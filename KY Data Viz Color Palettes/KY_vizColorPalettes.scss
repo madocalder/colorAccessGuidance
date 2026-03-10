@@ -32,7 +32,7 @@ $colors: (
     text-color: #ffffff
   ),
   "grosbeak-navy": (
-    hex: #29326a,
+    hex: #012a5c,
     name: "Grosbeak Navy",
     category: "primary",
     text-color: #ffffff
@@ -269,11 +269,11 @@ $colors: (
 
 // Palette Definitions
 $categorical-palettes: (
-  "8-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #76933c, #b0d7ed),
-  "7-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #76933c, #ebebeb),
-  "7-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #76933c),
-  "6-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a, #ebebeb),
-  "6-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #29326a),
+  "8-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #012a5c, #76933c, #b0d7ed),
+  "7-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #012a5c, #76933c, #ebebeb),
+  "7-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #012a5c, #76933c),
+  "6-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #012a5c, #ebebeb),
+  "6-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #012a5c),
   "5-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2, #ebebeb),
   "5-categorical": (#62bcf0, #c7e072, #4c6dc1, #28655a, #a572b2),
   "4-categorical-grey": (#62bcf0, #c7e072, #4c6dc1, #28655a, #ebebeb),
@@ -299,8 +299,8 @@ $diverging-palettes: (
 );
 
 $dual-palettes: (
-  "blues": (#62bcf0, #29326a),
-  "purple-blue": (#a572b2, #29326a),
+  "blues": (#62bcf0, #012a5c),
+  "purple-blue": (#a572b2, #012a5c),
   "indigo-highlight": (#4c6dc1, #e3e1d3),
   "purple-highlight": (#a572b2, #e3e1d3)
 );
